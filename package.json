@@ -4,7 +4,23 @@
     "author": {
         "name": "pyrotechniac"
     },
+    "description": "A discord bot for Pyro to learn Commando and Discord.js",
+    "license": "UNLICENSED",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/PyroTechniac/Sunshine-v2"
+    },
     "dependencies": {
-        "discord.js": "git+https://github.com/discordjs/discord.js.git"
+        "canvas": "^2.2.0",
+        "commando-provider-mongo": "^1.1.1",
+        "common-tags": "^1.8.0",
+        "convict": "^4.4.0",
+        "discord.js": "git+https://github.com/discordjs/discord.js.git",
+        "discord.js-commando": "git+https://github.com/discordjs/Commando.git",
+        "dotenv": "^6.2.0",
+        "moment": "^2.23.0",
+        "mongodb": "^3.1.10",
+        "mongoose": "^5.4.2",
+        "sequelize": "^4.42.0"
     }
 }
