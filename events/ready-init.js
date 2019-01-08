@@ -1,5 +1,5 @@
 const config = require("../config")
-const activities = require('../assets/')
+const activities = require('../assets/json/activity.json')
 const client = require("../server/client")
 module.exports = async () => {
     console.log(`[READY] Logged in as ${client.user.tag}! (${client.user.id})`)
@@ -40,6 +40,10 @@ module.exports = async () => {
         console.log(`[READY] Registering role ${roleName}`)
         client.myRoles[roleName] = foundRole;
     })
-    const firstActivity = activities[Math.floor(Math.random) * activities.length]
-    console.log(firstActivity)
+    const firstActivity = activities[Math.floor(Math.random() * activities.length)]
+    client.user.setActivity(firstActivity.text, { type: firstActivity.type })
+    client.setInterval(() => {
+        const activity = activities[Math.floor(Math.random() * activities.length)]
+        client.user.setActivity(activity.text, { type: activity.type })
+    }, 10 * 60  * 1000)
 }
