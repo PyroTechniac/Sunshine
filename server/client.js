@@ -14,7 +14,8 @@ client.registry
     .registerDefaultTypes()
     .registerDefaultGroups()
     .registerGroups([
-        ['util', 'Utility']
+        ['util', 'Utility'],
+        ['admin', 'Administrative']
     ])
     .registerDefaultCommands({
         help: false,
