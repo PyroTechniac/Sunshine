@@ -3,7 +3,7 @@ const SQLite = require('./SQLite')
 class SunshineClient extends CommandoClient {
     constructor(options) {
         super(options);
-        this.database() = SQLite.db
+        this.database = SQLite.db
         SQLite.start()
     }
 }

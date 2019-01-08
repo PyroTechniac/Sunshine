@@ -74,6 +74,22 @@ const config = convict({
             arg: "name"
         },
         channels: {
+            voice: {
+                id: {
+                    doc: "The ID for the voice channel",
+                    format: String,
+                    default: "",
+                    env: "CHANNEL_VOICE_ID",
+                    arg: 'channel-voice-id'
+                },
+                name: {
+                    doc: "The name for the voice channel",
+                    format: String,
+                    default: "Karaoke Lounge",
+                    env: "CHANNEL_VOICE_NAME",
+                    arg: 'channel-voice-name'
+                }
+            },
             public: {
                 id: {
                     doc: "The ID for the public channel",
@@ -172,7 +188,7 @@ const config = convict({
             }
         },
         roles: {
-            important: {
+            all: {
                 id: {
                     doc: "The ID of the important role",
                     format: String,
@@ -254,62 +270,62 @@ const config = convict({
             }
         }
     },
-        db: {
-            username: {
-                doc: "Database username",
-                format: String,
-                default: "username",
-                sensitive: true,
-                env: "DB_USERNAME",
-                arg: "db-username"
-            },
-            password: {
-                doc: "Database password",
-                format: String,
-                default: "password",
-                sensitive: true,
-                env: "DB_PASSWORD",
-                arg: "db-password"
-            },
-            host: {
-                doc: "Database host name/IP",
-                format: String,
-                default: "localhost",
-                sensitive: true,
-                env: "DB_HOST",
-                arg: "db-host"
-            },
-            port: {
-                doc: "Database Port",
-                format: Number,
-                default: 27017,
-                env: "DB_PORT",
-                arg: "db-port"
-            },
-            name: {
-                doc: "Database Name",
-                format: String,
-                default: "Sunshine",
-                env: "DB_NAME",
-                arg: "db-name"
-            },
-            url: {
-                doc: "Database URL",
-                format: String,
-                default: "mongodb://localhost:27017/Sunshine",
-                sensitive: true,
-                env: "DB_URL",
-                arg: "db-url"
-            },
-            dialect: {
-                doc: "Database Dialect",
-                format: String,
-                default: "sqlite",
-                env: "DB_DIALECT",
-                arg: "db-dialect"
-            }
+    db: {
+        username: {
+            doc: "Database username",
+            format: String,
+            default: "username",
+            sensitive: true,
+            env: "DB_USERNAME",
+            arg: "db-username"
+        },
+        password: {
+            doc: "Database password",
+            format: String,
+            default: "password",
+            sensitive: true,
+            env: "DB_PASSWORD",
+            arg: "db-password"
+        },
+        host: {
+            doc: "Database host name/IP",
+            format: String,
+            default: "localhost",
+            sensitive: true,
+            env: "DB_HOST",
+            arg: "db-host"
+        },
+        port: {
+            doc: "Database Port",
+            format: Number,
+            default: 27017,
+            env: "DB_PORT",
+            arg: "db-port"
+        },
+        name: {
+            doc: "Database Name",
+            format: String,
+            default: "Sunshine",
+            env: "DB_NAME",
+            arg: "db-name"
+        },
+        url: {
+            doc: "Database URL",
+            format: String,
+            default: "mongodb://localhost:27017/Sunshine",
+            sensitive: true,
+            env: "DB_URL",
+            arg: "db-url"
+        },
+        dialect: {
+            doc: "Database Dialect",
+            format: String,
+            default: "sqlite",
+            env: "DB_DIALECT",
+            arg: "db-dialect"
         }
-    
+    }
+
 })
 const env = config.get('env')
 const configFilePath = `./config/${env}.json`;

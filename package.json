@@ -1,6 +1,10 @@
 {
     "name": "sunshine",
     "version": "0.0.1",
+    "main": "Sunshine.js",
+    "scripts": {
+        "start": "node Sunshine.js"
+    },
     "author": {
         "name": "pyrotechniac"
     },
@@ -21,6 +25,7 @@
         "moment": "^2.23.0",
         "mongodb": "^3.1.10",
         "mongoose": "^5.4.2",
-        "sequelize": "^4.42.0"
+        "sequelize": "^4.42.0",
+        "sqlite3": "^4.0.4"
     }
 }

@@ -11,8 +11,16 @@ const client = new SunshineClient({
     disabledEvents: ['TYPING_START']
 })
 client.registry
-    .registerDefaults
-
+    .registerDefaultTypes()
+    .registerDefaultGroups()
+    .registerGroups([
+        ['util', 'Utility']
+    ])
+    .registerDefaultCommands({
+        help: false,
+        ping: false
+    })
+    .registerCommandsIn(path.join(__dirname, '../commands'))
 client.setProvider(new SequelizeProvider(client.database)).catch(console.error)
 client.dispatcher.addInhibitor((message) => {
     const blacklist = client.provider.get('global', 'blacklist', [])
