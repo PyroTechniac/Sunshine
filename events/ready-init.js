@@ -36,7 +36,7 @@ module.exports = async () => {
     })
     roleNames.forEach((roleName) => {
         const foundRole = client.myGuild.roles.get(config.server.roles[roleName].id) || client.myGuild.roles.find(role => role.name === config.server.roles[roleName].name)
-        if (!foundRole) throw new Error(`Channel ${config.server.channels[channelName].name} not found`)
+        if (!foundRole) throw new Error(`Channel ${config.server.channels[foundRole].name} not found`)
         console.log(`[READY] Registering role ${roleName}`)
         client.myRoles[roleName] = foundRole;
     })
