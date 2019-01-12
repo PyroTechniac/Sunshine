@@ -22,6 +22,7 @@
         "discord.js": "git+https://github.com/discordjs/discord.js.git",
         "discord.js-commando": "git+https://github.com/discordjs/Commando.git",
         "dotenv": "^6.2.0",
+        "git-rev-sync": "^1.12.0",
         "moment": "^2.23.0",
         "mongodb": "^3.1.10",
         "mongoose": "^5.4.2",

@@ -1,8 +1,8 @@
 const path = require("path")
-const SunshineClient = require("../structures/Client")
+const {Client} = require('../structures/Structures')
 const config = require("../config")
 const SequelizeProvider = require('../providers/Sequelize')
-const client = new SunshineClient({
+const client = new Client({
     commandPrefix: config.bot.prefix,
     owner: config.bot.owners.split(","),
     invite: config.bot.invite,

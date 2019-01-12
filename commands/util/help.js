@@ -6,8 +6,8 @@ const throttlingInfo = {
     throttlingDuration: 60,
     throttlingDesc: `${this.throttlingUsages} use${this.throttlingUsages > 1 ? 's' : ''} every ${this.throttlingDuration} seconds.`
 }
-const SunshineCommand = require("../../structures/Command")
-module.exports = class HelpCommand extends SunshineCommand {
+const {Command} = require("../../structures/Structures")
+module.exports = class HelpCommand extends Command {
     constructor(client) {
         super(client, {
             name: "help",
