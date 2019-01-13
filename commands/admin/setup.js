@@ -2,6 +2,7 @@ const { Command } = require("../../structures/Structures")
 const config = require("../../config")
 const { stripIndents } = require('common-tags')
 const { MessageEmbed } = require("discord.js")
+const client = require("../../server/client")
 module.exports = class SetupCommand extends Command {
     constructor(client) {
         super(client, {
@@ -76,6 +77,7 @@ module.exports = class SetupCommand extends Command {
         })
     }
     async run(message, { membership, meta, modmail, newbie, roster, welcome, admins, mods, members, newbies, all, vouchers }) {
+        //console.log(this.client.myChannels)
         this.client.myChannels.membership = membership
         this.client.myChannels.meta = meta
         this.client.myChannels.modmail = modmail
@@ -87,7 +89,18 @@ module.exports = class SetupCommand extends Command {
         this.client.myRoles.members = members
         this.client.myRoles.newbies = newbies
         this.client.myRoles.all = all
-
+        await this.client.provider.set('global', 'membership', membership.id)
+        await this.client.provider.set('global', 'meta', meta.id)
+        await this.client.provider.set('global', 'modmail', modmail.id)
+        await this.client.provider.set('global', 'public', newbie.id)
+        await this.client.provider.set('global', 'roster', roster.id)
+        await this.client.provider.set('global', 'welcome', welcome.id)
+        await this.client.provider.set('global', 'admins', admins.id)
+        await this.client.provider.set('global', 'mods', mods.id)
+        await this.client.provider.set('global', 'members', members.id)
+        await this.client.provider.set('global', 'newbies', newbies.id)
+        await this.client.provider.set('global', 'all', all.id)
+        await this.client.provider.set('global', 'voucherTarget', vouchers)
         const embed = new MessageEmbed()
             .setColor(config.bot.embed.color)
             .setDescription("**Current Server Settings:**")
@@ -97,16 +110,16 @@ module.exports = class SetupCommand extends Command {
             Modmail: ${this.client.myChannels.modmail}
             Public: ${this.client.myChannels.public}
             Roster Changes: ${this.client.myChannels.roster}
-            Welcome: ${this.client.myChannels.roster}
+            Welcome: ${this.client.myChannels.welcome}
             `, true)
             .addField('❯ Roles:', stripIndents`
             Admins: ${this.client.myRoles.admins}
             Mods: ${this.client.myRoles.mods}
-            Members: ${this.client.myRoles.members}
+            Members: ${client.myRoles.members}
             Newbies: ${this.client.myRoles.newbies}
             All: ${this.client.myRoles.all}
             `, true)
-            .addField('❯ Voucher Target: ', vouchers, true)
+            .addField('❯ Voucher Target: ', client.provider.get('global', 'voucherTarget'), true)
             return message.embed(embed)
     }
 }

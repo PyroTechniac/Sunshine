@@ -28,6 +28,7 @@
         "mongoose": "^5.4.2",
         "require-all": "^3.0.0",
         "sequelize": "^4.42.0",
+        "sqlite": "^3.0.0",
         "sqlite3": "^4.0.4"
     }
 }
