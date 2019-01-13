@@ -1,6 +1,6 @@
-const path = require("path")
-const {Client} = require('../structures/Structures')
+const { Client } = require('../structures/Structures')
 const config = require("../config")
+const path = require('path')
 const SequelizeProvider = require('../providers/Sequelize')
 const client = new Client({
     commandPrefix: config.bot.prefix,
@@ -14,14 +14,16 @@ client.registry
     .registerDefaultTypes()
     .registerDefaultGroups()
     .registerGroups([
-        ['util', 'Utility'],
-        ['admin', 'Administrative']
+        ['admin', 'Administrative'],
+        ['util', 'Utility']
     ])
     .registerDefaultCommands({
         help: false,
         ping: false
     })
-    .registerCommandsIn(path.join(__dirname, '../commands'))
+    .registerCommandsIn({
+        dirname: path.join(__dirname, "../commands")
+    });
 client.setProvider(new SequelizeProvider(client.database)).catch(console.error)
 client.dispatcher.addInhibitor((message) => {
     const blacklist = client.provider.get('global', 'blacklist', [])

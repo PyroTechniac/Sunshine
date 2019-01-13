@@ -1,7 +1,7 @@
 const { stripIndents } = require('common-tags')
-const SunshineCommand = require('../../structures/Command')
+const { Command } = require('../../structures/Structures')
 const { formatNumber } = require("../../util/Util")
-module.exports = class PingCommand extends SunshineCommand {
+module.exports = class PingCommand extends Command {
     constructor(client) {
         super(client, {
             name: "ping",

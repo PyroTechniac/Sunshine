@@ -2,6 +2,7 @@ const config = require('./config')
 const client = require('./server/client')
 const discordjs = require("discord.js")
 const readyInit = require("./events/ready-init")
+const memberJoin = require('./events/join-process')
 const origionalMembersFunction = discordjs.MessageMentions.members;
 discordjs.MessageMentions.members = (function (origionalMembersFunction) {
     return function (...args) {
@@ -17,6 +18,7 @@ discordjs.MessageMentions.members = (function (origionalMembersFunction) {
     }
 }(origionalMembersFunction))
 client.on('ready', readyInit)
+client.on('guildMemberAdd', memberJoin)
 client.on('commandError', (command, error) => console.error('[COMMAND ERROR]', command.name, error))
 client.on('error', error => console.error('[ERROR]', error))
 client.login(config.bot.token)

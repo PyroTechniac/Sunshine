@@ -1,5 +1,6 @@
 const { Command, CommandoClient } = require('discord.js-commando')
 const Sequelize = require("sequelize")
+
 const config = require("../config")
 const options = {
     logging: false,
@@ -24,7 +25,7 @@ class SQLite {
         try {
             console.log('[DATABASE] Connecting to database')
             await db.authenticate()
-            await db.start()
+            await db.sync()
         } catch (error) {
             console.error('[DATABASE] Unable to connect to database', error)
             setTimeout(() => {
@@ -33,7 +34,8 @@ class SQLite {
         }
     }
 }
-class SunshineClient extends Client {
+
+class SunshineClient extends CommandoClient {
     constructor(options) {
         super(options)
         this.database = SQLite.db

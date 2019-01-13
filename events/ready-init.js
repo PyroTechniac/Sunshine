@@ -16,8 +16,7 @@ module.exports = async () => {
         'modmail',
         'public',
         'roster',
-        'welcome',
-        'voice'
+        'welcome'
     ]
     const roleNames = [
         'admins',
@@ -31,13 +30,13 @@ module.exports = async () => {
     channelNames.forEach((channelName) => {
         const foundChannel = client.myGuild.channels.get(config.server.channels[channelName].id) || client.myGuild.channels.find(channel => channel.name === config.server.channels[channelName].name)
         if (!foundChannel) throw new Error(`Channel ${config.server.channels[channelName].name} not found`)
-        console.log(`[READY] Registering channel ${channelName}`)
+        //console.log(`[READY] Registering channel ${channelName}`)
         client.myChannels[channelName] = foundChannel
     })
     roleNames.forEach((roleName) => {
         const foundRole = client.myGuild.roles.get(config.server.roles[roleName].id) || client.myGuild.roles.find(role => role.name === config.server.roles[roleName].name)
         if (!foundRole) throw new Error(`Channel ${config.server.channels[foundRole].name} not found`)
-        console.log(`[READY] Registering role ${roleName}`)
+        //console.log(`[READY] Registering role ${roleName}`)
         client.myRoles[roleName] = foundRole;
     })
     const firstActivity = activities[Math.floor(Math.random() * activities.length)]
