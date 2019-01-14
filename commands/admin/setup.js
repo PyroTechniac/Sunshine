@@ -3,7 +3,21 @@ const config = require('../../config');
 const { stripIndents } = require('common-tags');
 const { MessageEmbed } = require('discord.js');
 const client = require('../../server/client');
-
+const channelNames = [
+  'membership',
+  'meta',
+  'modmail',
+  'public',
+  'roster',
+  'welcome',
+];
+const roleNames = [
+  'admins',
+  'mods',
+  'members',
+  'newbies',
+  'all',
+];
 module.exports = class SetupCommand extends Command {
   constructor(client) {
     super(client, {
@@ -77,15 +91,15 @@ module.exports = class SetupCommand extends Command {
       ],
     });
   }
-
+  reassignChannel(name, newChannel) {
+    return this.client.myChannels[name] = newChannel;
+  }
   async run(message, { membership, meta, modmail, newbie, roster, welcome, admins, mods, members, newbies, all, vouchers }) {
     // console.log(this.client.myChannels)
-    this.client.myChannels.membership = membership;
-    this.client.myChannels.meta = meta;
-    this.client.myChannels.modmail = modmail;
-    this.client.myChannels.public = newbie;
-    this.client.myChannels.roster = roster;
-    this.client.myChannels.welcome = welcome;
+    const channels = [membership, meta, modmail, newbie, roster, welcome];
+    for (let i = 0; i < channels.length; i++) {
+      this.reassignChannel(channelNames[i], channels[i]);
+    }
     this.client.myRoles.admins = admins;
     this.client.myRoles.mods = mods;
     this.client.myRoles.members = members;

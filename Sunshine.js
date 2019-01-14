@@ -24,3 +24,7 @@ client.on('guildMemberAdd', memberJoin);
 client.on('commandError', (command, error) => console.error('[COMMAND ERROR]', command.name, error));
 client.on('error', error => console.error('[ERROR]', error));
 client.login(config.bot.token);
+process.on('unhandledRejection', error => {
+  console.error('[PROMISE ERROR]', error);
+  process.exit(-1);
+});
