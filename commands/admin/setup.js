@@ -94,6 +94,10 @@ module.exports = class SetupCommand extends Command {
   reassignChannel(name, newChannel) {
     return this.client.myChannels[name] = newChannel;
   }
+  reassignRole(name, newRole) {
+    console.log(name);
+    console.log(newRole);
+  }
   async run(message, { membership, meta, modmail, newbie, roster, welcome, admins, mods, members, newbies, all, vouchers }) {
     // console.log(this.client.myChannels)
     const channels = [membership, meta, modmail, newbie, roster, welcome];
