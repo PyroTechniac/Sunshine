@@ -5,7 +5,8 @@
     "scripts": {
         "start": "node Sunshine.js",
         "test": "eslint . --ext .js",
-        "lint": "eslint . --ext .js --fix"
+        "lint": "eslint . --ext .js --fix",
+        "github": "git add -A && git commit -m %% git push"
     },
     "author": {
         "name": "pyrotechniac"
