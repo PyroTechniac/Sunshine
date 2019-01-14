@@ -3,7 +3,9 @@
     "version": "0.0.1",
     "main": "Sunshine.js",
     "scripts": {
-        "start": "node Sunshine.js"
+        "start": "node Sunshine.js",
+        "test": "eslint . --ext .js",
+        "lint": "eslint . --ext .js --fix"
     },
     "author": {
         "name": "pyrotechniac"
@@ -30,5 +32,14 @@
         "sequelize": "^4.42.0",
         "sqlite": "^3.0.0",
         "sqlite3": "^4.0.4"
+    },
+    "devDependencies": {
+        "eslint": "^5.10.0",
+        "eslint-config-airbnb": "^17.1.0",
+        "eslint-config-airbnb-base": "^13.1.0",
+        "eslint-config-amber": "^2.0.0",
+        "eslint-plugin-import": "^2.14.0",
+        "eslint-plugin-json": "^1.3.2",
+        "nodemon": "^1.18.8"
     }
 }
