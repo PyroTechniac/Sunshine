@@ -4,7 +4,6 @@ const client = require('../server/client');
 const SequelizeProvider = require('../providers/Sequelize');
 
 module.exports = async () => {
-  console.log(`[READY] Logged in as ${client.user.tag}! (${client.user.id})`);
   await client.setProvider(new SequelizeProvider(client.database)).catch(error => console.error);
   const botUsername = (config.env.substring(0, 5).toLowerCase() === 'prod') ? config.bot.name : `${config.bot.name}DEV`;
   if (client.user.username !== botUsername) {
@@ -47,6 +46,7 @@ module.exports = async () => {
     client.myRoles[roleName] = await foundRole;
     console.log(`Setting up role ${foundRole.name}`);
   });
+  client.voucherTarget = client.provider.get('global', 'voucherTarget', '5');
   // roleNames.forEach((roleName) => {
   //     const foundRole = client.myGuild.roles.get(config.server.roles[roleName].id) || client.myGuild.roles.find(role => role.name === config.server.roles[roleName].name)
   //     if (!foundRole) throw new Error(`Channel ${config.server.channels[foundRole].name} not found`)
@@ -60,4 +60,5 @@ module.exports = async () => {
     const activity = activities[Math.floor(Math.random() * activities.length)];
     client.user.setActivity(activity.text, { type: activity.type });
   }, 10 * 60 * 1000);
+  await console.log(`[READY] Logged in as ${client.user.tag}! (${client.user.id})`);
 };

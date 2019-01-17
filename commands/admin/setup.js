@@ -91,12 +91,11 @@ module.exports = class SetupCommand extends Command {
       ],
     });
   }
-  reassignChannel(name, newChannel) {
+  async reassignChannel(name, newChannel) {
     return this.client.myChannels[name] = newChannel;
   }
-  reassignRole(name, newRole) {
-    console.log(name);
-    console.log(newRole);
+  async reassignRole(name, newRole) {
+    return this.client.myRoles[name] = newRole;
   }
   async run(message, { membership, meta, modmail, newbie, roster, welcome, admins, mods, members, newbies, all, vouchers }) {
     // console.log(this.client.myChannels)
@@ -104,11 +103,10 @@ module.exports = class SetupCommand extends Command {
     for (let i = 0; i < channels.length; i++) {
       this.reassignChannel(channelNames[i], channels[i]);
     }
-    this.client.myRoles.admins = admins;
-    this.client.myRoles.mods = mods;
-    this.client.myRoles.members = members;
-    this.client.myRoles.newbies = newbies;
-    this.client.myRoles.all = all;
+    const roles = [admins, mods, members, newbies, all];
+    for (let i = 0; i < roles.length; i++) {
+      this.reassignRole(roleNames[i], roles[i]);
+    }
     await this.client.provider.set('global', 'membership', membership.id);
     await this.client.provider.set('global', 'meta', meta.id);
     await this.client.provider.set('global', 'modmail', modmail.id);
@@ -121,7 +119,7 @@ module.exports = class SetupCommand extends Command {
     await this.client.provider.set('global', 'newbies', newbies.id);
     await this.client.provider.set('global', 'all', all.id);
     await this.client.provider.set('global', 'voucherTarget', vouchers);
-    const embed = new MessageEmbed()
+    const embed = await new MessageEmbed()
       .setColor(config.bot.embed.color)
       .setDescription('**Current Server Settings:**')
       .addField('❯ Channels:', stripIndents`
@@ -139,7 +137,7 @@ module.exports = class SetupCommand extends Command {
             Newbies: ${this.client.myRoles.newbies}
             All: ${this.client.myRoles.all}
             `, true)
-      .addField('❯ Voucher Target: ', client.provider.get('global', 'voucherTarget'), true);
+      .addField('❯ Voucher Target: ', client.provider.get('global', 'voucherTarget', '5'), true);
     return message.embed(embed);
   }
 };
