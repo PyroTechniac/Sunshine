@@ -5,6 +5,7 @@ const SequelizeProvider = require('../providers/Sequelize');
 
 module.exports = async () => {
   await client.setProvider(new SequelizeProvider(client.database)).catch(error => console.error);
+  await client.database.sync();
   const botUsername = (config.env.substring(0, 5).toLowerCase() === 'prod') ? config.bot.name : `${config.bot.name}DEV`;
   if (client.user.username !== botUsername) {
     console.log(`[READY] Changing bot username from ${client.user.username} to  ${botUsername}`);

@@ -19,13 +19,14 @@ client.registry
   .registerGroups([
     ['admin', 'Administrative'],
     ['util', 'Utility'],
+    ['user', 'User commands'],
   ])
   .registerDefaultCommands({
     help: false,
     ping: false,
   })
   .registerCommandsIn({ dirname: path.join(__dirname, '../commands') });
-
+client.database.sync();
 client.dispatcher.addInhibitor((message) => {
   const blacklist = client.provider.get('global', 'blacklist', []);
   if (!blacklist.includes(message.author.id)) return false;
