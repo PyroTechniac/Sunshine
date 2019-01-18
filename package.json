@@ -6,7 +6,7 @@
         "start": "node Sunshine.js",
         "test": "eslint . --ext .js",
         "lint": "eslint . --ext .js --fix",
-        "github": "github.bat"
+        "git": "github.bat"
     },
     "author": {
         "name": "pyrotechniac"

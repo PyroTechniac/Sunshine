@@ -53,24 +53,37 @@ module.exports = class JoinCommand extends Command {
             ],
         });
     }
-    async primaryRoleUpdate(flermling, primary, guild) {
-        flermling.roles.add(guild.roles.filter(role => role.name === `${primary.toLowerCase()}`));
-        return flermling;
-    }
     async run(message, { aboveEighteen, primaryPlatform, extraPlatforms, gamertag, bungieLink, email, tidbit }) {
         const newbieTable = require('../../server/models');
+        const arr = extraPlatforms.split(' ');
         const flermling = await this.client.myGuild.members.fetch(message.author.id);
+        const roleResolvable = [];
+        arr.forEach(async role => {
+            if (role.toLowerCase() === 'none') return;
+            await roleResolvable.push(this.client.myGuild.roles.find(r => r.name === `${role.toLowerCase()}-muted`).id);
+        });
+        roleResolvable.push(this.client.myGuild.roles.find(role => role.name === `${primaryPlatform.toLowerCase()}`).id);
+        roleResolvable.push(this.client.myRoles.newbies.id);
         const newbieEntry = await newbieTable.findOne({ where: { newbieUserId: message.author.id } });
-        const rosterMessage = await this.client.myChannels.roster.messages.fetch(newbieEntry.rosterMessage);
-        await this.primaryRoleUpdate(flermling, primaryPlatform, client.myGuild);
+        let rosterMessage = await this.client.myChannels.roster.messages.fetch(newbieEntry.rosterMessage);
+        if (rosterMessage === 'undefined') {
+            rosterMessage = await this.client.myChannels.roster.send(`New Flermling ${flermling}\`\`\`${tidbit}\`\`\``);
+        }
+        else {
+            await rosterMessage.edit(`New Flermling ${flermling}\`\`\`${tidbit}\`\`\``);
+        }
         await newbieEntry.update({
             gamerTag: gamertag,
             tidbit: tidbit,
             bungieLink: bungieLink,
             emailAddress: email,
             joinStatus: 'FLERMLING',
+            rosterMessage: rosterMessage.id,
         });
-        await flermling.roles.add(this.client.myRoles.newbies);
         await rosterMessage.edit(`New Flermling ${flermling}\`\`\`${tidbit}\`\`\``);
+        await flermling.edit({
+            nick: gamertag,
+            roles: roleResolvable,
+        });
     }
 };

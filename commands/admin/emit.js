@@ -6,7 +6,7 @@ module.exports = class EmitCommand extends Command {
     super(client, {
       name: 'emit',
       group: 'admin',
-      ownerOnly: true,
+      // ownerOnly: true,
       guildOnly: true,
       memberName: 'emit',
       description: 'For emitting events to the client for testing',

@@ -21,7 +21,7 @@ const newbie = client.database.define('newbie', {
 }, {
         hooks: {
             afterUpdate: (newbie) => {
-                console.log(newbie);
+                // console.log(newbie);
             },
         },
     });
