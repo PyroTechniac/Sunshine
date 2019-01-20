@@ -1,6 +1,6 @@
 const client = require('./client');
 const { STRING, TEXT, INTEGER } = require('sequelize');
-const newbie = client.database.define('newbie', {
+const members = client.database.define('members', {
     newbieUserId: {
         type: STRING,
         primaryKey: true,
@@ -11,7 +11,7 @@ const newbie = client.database.define('newbie', {
     discordTag: TEXT,
     bungieLink: STRING,
     emailAddress: STRING,
-    vouchers: {
+    vouches: {
         type: INTEGER,
         defaultValue: 0,
     },
@@ -25,4 +25,4 @@ const newbie = client.database.define('newbie', {
             },
         },
     });
-module.exports = newbie;
+module.exports = members;
