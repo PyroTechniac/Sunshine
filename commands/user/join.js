@@ -64,6 +64,7 @@ module.exports = class JoinCommand extends Command {
         });
         roleResolvable.push(this.client.myGuild.roles.find(role => role.name === `${primaryPlatform.toLowerCase()}`).id);
         roleResolvable.push(this.client.myRoles.newbies.id);
+        roleResolvable.push(this.client.myRoles.alls.id);
         const newbieEntry = await newbieTable.findOne({ where: { newbieUserId: message.author.id } });
         let rosterMessage = await this.client.myChannels.roster.messages.fetch(newbieEntry.rosterMessage);
         if (rosterMessage === 'undefined') {
