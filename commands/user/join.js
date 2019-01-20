@@ -54,11 +54,12 @@ module.exports = class JoinCommand extends Command {
         });
     }
     async run(message, { aboveEighteen, primaryPlatform, extraPlatforms, gamertag, bungieLink, email, tidbit }) {
+        // TODO: Try to move this to top of file (throwing error)
         const newbieTable = require('../../server/models');
-        const arr = extraPlatforms.split(' ');
+        const platformArray = extraPlatforms.split(' ');
         const flermling = await this.client.myGuild.members.fetch(message.author.id);
         const roleResolvable = [];
-        arr.forEach(async role => {
+        platformArray.forEach(async role => {
             if (role.toLowerCase() === 'none') return;
             await roleResolvable.push(this.client.myGuild.roles.find(r => r.name === `${role.toLowerCase()}-muted`).id);
         });
