@@ -20,8 +20,10 @@ client.registry
   .registerGroups([
     ['admin', 'Administrative'],
     ['util', 'Utility'],
-    ['user', 'User commands'],
+    ['user', 'User Commands'],
     ['info', 'Discord Information'],
+    ['fun', 'Just for Fun'],
+    ['voice', 'Voice Commands'],
   ])
   .registerDefaultCommands({
     help: false,

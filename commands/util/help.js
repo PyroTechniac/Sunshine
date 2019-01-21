@@ -1,12 +1,9 @@
 const { stripIndents } = require('common-tags');
 const config = require('../../config');
 const { MessageEmbed } = require('discord.js');
-
-const throttlingInfo = {
-  throttlingUsages: 1,
-  throttlingDuration: 60,
-  throttlingDesc: `${this.throttlingUsages} use${this.throttlingUsages > 1 ? 's' : ''} every ${this.throttlingDuration} seconds.`,
-};
+const throttlingUsages = 1;
+const throttlingDuration = 60;
+const throttlingDesc = `${throttlingUsages} use ${throttlingUsages > 1 ? 's' : ''} every ${throttlingDuration} seconds.`;
 const { Command } = require('../../structures/Structures');
 
 module.exports = class HelpCommand extends Command {
@@ -16,8 +13,8 @@ module.exports = class HelpCommand extends Command {
       aliases: ['commands', 'command-list', 'halp', 'wtf', 'what-the-even-is'],
       group: 'util',
       memberName: 'help',
-      description: `Displays a list of available commands, or detailed information for a specific command. ${throttlingInfo.throttlingDesc}`,
-      throttling: { usages: throttlingInfo.throttlingUsages, duration: throttlingInfo.throttlingDuration },
+      description: `Displays a list of available commands, or detailed information for a specific command. ${throttlingDesc}`,
+      throttling: { usages: throttlingUsages, duration: throttlingDuration },
       args: [
         {
           key: 'command',
