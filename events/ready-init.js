@@ -49,6 +49,10 @@ module.exports = async () => {
     client.myRoles[roleName] = await foundRole;
     // console.log(`Setting up role ${foundRole.name}`);
   });
+  new CronJob('* * * * * *', async () => {
+    const readyNewbies = await members.findAll({ where: { vouches: 5 } });
+    console.log(readyNewbies);
+  }).start();
   client.voucherTarget = client.provider.get('global', 'voucherTarget', '5');
   // roleNames.forEach((roleName) => {
   //     const foundRole = client.myGuild.roles.get(config.server.roles[roleName].id) || client.myGuild.roles.find(role => role.name === config.server.roles[roleName].name)
