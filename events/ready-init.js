@@ -41,13 +41,13 @@ module.exports = async () => {
   channelNames.forEach(async (channelName) => {
     const foundChannel = await client.myGuild.channels.get(client.provider.get('global', `${channelName}`, config.server.channels[channelName].id)) || client.myGuild.channels.find(channel => channel.name === config.server.channels[channelName].name);
     client.myChannels[channelName] = await foundChannel;
-    console.log(`Setting up channel ${foundChannel.name}`);
+    // console.log(`Setting up channel ${foundChannel.name}`);
   });
   roleNames.forEach(async (roleName) => {
     // Look for role in client settings, then search for it in the guild if fails
     const foundRole = await client.myGuild.roles.get(client.provider.get('global', `${roleName}`, config.server.roles[roleName].id)) || client.myGuild.roles.find(role => role.name === config.server.roles[roleName].name);
     client.myRoles[roleName] = await foundRole;
-    console.log(`Setting up role ${foundRole.name}`);
+    // console.log(`Setting up role ${foundRole.name}`);
   });
   client.voucherTarget = client.provider.get('global', 'voucherTarget', '5');
   // roleNames.forEach((roleName) => {

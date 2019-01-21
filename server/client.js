@@ -15,11 +15,13 @@ const client = new Client({
 });
 client.registry
   .registerDefaultTypes()
+  .registerTypesIn({ dirname: path.join(__dirname, '../types') })
   .registerDefaultGroups()
   .registerGroups([
     ['admin', 'Administrative'],
     ['util', 'Utility'],
     ['user', 'User commands'],
+    ['info', 'Discord Information'],
   ])
   .registerDefaultCommands({
     help: false,
