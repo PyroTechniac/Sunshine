@@ -84,12 +84,12 @@ module.exports = class JoinCommand extends Command {
         });
         await rosterMessage.edit(`New Flermling ${flermling}\`\`\`${tidbit}\`\`\``);
         await flermling.edit({
-            // nick: gamertag,
+            nick: gamertag,
             roles: roleResolvable,
         });
         await rosterMessage.react('👍');
         const filter = (reaction, user) => reaction.emoji.name === '👍' && user.bot !== true;
-        const collector = await rosterMessage.createReactionCollector(filter, { max: 1, time: 14400000 });
+        const collector = await rosterMessage.createReactionCollector(filter, { max: 4, time: 14400000 });
         collector.on('end', collected => {
             this.client.myChannels.welcome.send(`${this.client.myRoles.all} Help me welcome our newest flermling ${flermling}!`);
         });
