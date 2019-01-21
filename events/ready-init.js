@@ -1,11 +1,13 @@
 const config = require('../config');
+const CronJob = require('cron').CronJob;
 const activities = require('../assets/json/activity.json');
 const client = require('../server/client');
 const SequelizeProvider = require('../providers/Sequelize');
+const members = require('../server/models');
 
 module.exports = async () => {
   await client.setProvider(new SequelizeProvider(client.database)).catch(error => console.error);
-  await client.database.sync();
+  await client.database.sync({ force: true });
   const botUsername = (config.env.substring(0, 5).toLowerCase() === 'prod') ? config.bot.name : `${config.bot.name}DEV`;
   if (client.user.username !== botUsername) {
     console.log(`[READY] Changing bot username from ${client.user.username} to  ${botUsername}`);

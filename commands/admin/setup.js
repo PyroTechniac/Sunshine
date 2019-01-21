@@ -92,10 +92,10 @@ module.exports = class SetupCommand extends Command {
     });
   }
   async reassignChannel(name, newChannel) {
-    return this.client.myChannels[name] = newChannel;
+    return this.client.myChannels[name] = await newChannel;
   }
   async reassignRole(name, newRole) {
-    return this.client.myRoles[name] = newRole;
+    return this.client.myRoles[name] = await newRole;
   }
   async run(message, { membership, meta, modmail, newbie, roster, welcome, admins, mods, members, newbies, all, vouchers }) {
     // console.log(this.client.myChannels)

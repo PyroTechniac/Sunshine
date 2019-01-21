@@ -65,7 +65,7 @@ module.exports = class JoinCommand extends Command {
         });
         roleResolvable.push(this.client.myGuild.roles.find(role => role.name === `${primaryPlatform.toLowerCase()}`).id);
         roleResolvable.push(this.client.myRoles.newbies.id);
-        roleResolvable.push(this.client.myRoles.alls.id);
+        roleResolvable.push(this.client.myRoles.all.id);
         const newbieEntry = await newbieTable.findOne({ where: { newbieUserId: message.author.id } });
         let rosterMessage = await this.client.myChannels.roster.messages.fetch(newbieEntry.rosterMessage);
         if (rosterMessage === 'undefined') {
@@ -84,8 +84,14 @@ module.exports = class JoinCommand extends Command {
         });
         await rosterMessage.edit(`New Flermling ${flermling}\`\`\`${tidbit}\`\`\``);
         await flermling.edit({
-            nick: gamertag,
+            // nick: gamertag,
             roles: roleResolvable,
+        });
+        await rosterMessage.react('👍');
+        const filter = (reaction, user) => reaction.emoji.name === '👍' && user.bot !== true;
+        const collector = await rosterMessage.createReactionCollector(filter, { max: 1, time: 14400000 });
+        collector.on('end', collected => {
+            this.client.myChannels.welcome.send(`${this.client.myRoles.all} Help me welcome our newest flermling ${flermling}!`);
         });
     }
 };
