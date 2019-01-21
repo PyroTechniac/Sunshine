@@ -1,5 +1,6 @@
 const { Command } = require('../../structures/Structures');
 const emojiCharacters = require('../../assets/json/emoji-characters');
+const { MessageEmbed } = require('discord.js');
 module.exports = class PollCommand extends Command {
     constructor(client) {
         super(client, {
@@ -121,8 +122,22 @@ module.exports = class PollCommand extends Command {
             ],
         });
     }
-    run(message, { question, answer1, answer2, answer3, answer4, answer5, answer6, answer7, answer8, answer9, answer10, answer11, answer12, answer13, answer14, answer15, answer16, answer17, answer18, answer19, answer20 }) {
+    async run(message, { question, answer1, answer2, answer3, answer4, answer5, answer6, answer7, answer8, answer9, answer10, answer11, answer12, answer13, answer14, answer15, answer16, answer17, answer18, answer19, answer20 }) {
+        await message.delete();
         const answerArray = [answer1, answer2, answer3, answer4, answer5, answer6, answer7, answer8, answer9, answer10, answer11, answer12, answer13, answer14, answer15, answer16, answer17, answer18, answer19, answer20];
-        console.log(answerArray);
+        answerArray.forEach(answer => {
+            if (answer === '') answerArray.splice(answerArray.indexOf(answer));
+        });
+        if (answerArray.length === 1) {
+            return message.say('Please give more than one option to vote on');
+        }
+        if (answerArray.length === 0) {
+            const messageQuestion = await message.say(`**${question}**`);
+            await messageQuestion.react(emojiCharacters.thumbsUp);
+            await messageQuestion.react(emojiCharacters.thumbsDown);
+        } else {
+            const messageQuestion = `**${question}**`;
+            const embed = new MessageEmbed();
+        }
     }
 };
