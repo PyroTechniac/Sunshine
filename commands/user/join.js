@@ -1,6 +1,7 @@
 const { Command } = require('../../structures/Structures');
 const client = require('../../server/client');
 const { MessageEmbed } = require('discord.js');
+const { thumbsUp, thumbsDown } = require('../../assets/json/emoji-characters');
 module.exports = class JoinCommand extends Command {
     constructor(client) {
         super(client, {
@@ -92,8 +93,9 @@ module.exports = class JoinCommand extends Command {
             nick: gamertag,
             roles: roleResolvable,
         });
-        await rosterMessage.react('👍');
-        const filter = (reaction, user) => reaction.emoji.name === '👍' && user.bot !== true;
+        await rosterMessage.react(thumbsUp);
+        await rosterMessage.react(thumbsDown);
+        const filter = (reaction, user) => (reaction.emoji.name === thumbsUp || reaction.emoji.name === thumbsDown) && user.bot !== true;
         const collector = await rosterMessage.createReactionCollector(filter, { max: 1, time: 14400000 });
         collector.on('end', (collected, endReason) => {
             this.client.myChannels.welcome.send(`${this.client.myRoles.all} Help me welcome our newest flermling ${flermling}! :hatched_chick:\n\nNew guy/gal -- as you may have seen, we have a join process to make sure you're a good fit for our community. As mentioned in ${this.client.myGuild.channels.find(c => c.name === 'getting-started')}, you'll need to participate both **in game** to get vouched and **here in Discord to gain server rank**...\n\n1. When you're ready to play, head over to ${this.client.myGuild.channels.find(c => c.name === `${primaryPlatform.toLowerCase()}-destiny-lfg`)} and send command \`!need-vouch-${primaryPlatform.toLowerCase()}\` to ask our friendly members to team up with you -- you need **five** of them to play with and :point_up: vouch for you\n\n2. Keep participating here in Discord until you reach **level 4** (40 messages send w/ 1-min cooldown) -- as a Flermling, you can send messages in your platform LFG channel plus ${this.client.myChannels.welcome}, ${this.client.myGuild.channels.find(c => c.name === 'kudos')}, ${this.client.myChannels.meta}, ${this.client.myGuild.channels.find(c => c.name === 'ask-the-mods')}, ${this.client.myGuild.channels.find(c => c.name === 'ask-a-bot')}, ${this.client.myGuild.channels.find(c => c.name === 'destiny')}, and ${this.client.myGuild.channels.find(c => c.name === 'lounge')}\n\nAfter that, you'll be a full fledged Flermernger -- with full Discord access and eligible to join the in-game-clan! :flermernger:`);

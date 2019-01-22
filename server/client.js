@@ -1,6 +1,6 @@
 const { Client } = require('../structures/Structures');
 const config = require('../config');
-const path = require('path');
+const { join } = require('path');
 const SequelizeProvider = require('../providers/Sequelize');
 const { SQLiteProvider } = require('discord.js-commando');
 const sqlite = require('sqlite');
@@ -15,7 +15,7 @@ const client = new Client({
 });
 client.registry
   .registerDefaultTypes()
-  .registerTypesIn({ dirname: path.join(__dirname, '../types') })
+  .registerTypesIn({ dirname: join(__dirname, '../types') })
   .registerDefaultGroups()
   .registerGroups([
     ['admin', 'Administrative'],
@@ -29,7 +29,7 @@ client.registry
     help: false,
     ping: false,
   })
-  .registerCommandsIn({ dirname: path.join(__dirname, '../commands') });
+  .registerCommandsIn({ dirname: join(__dirname, '../commands') });
 client.database.sync();
 client.dispatcher.addInhibitor((message) => {
   const blacklist = client.provider.get('global', 'blacklist', []);

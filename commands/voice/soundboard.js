@@ -1,6 +1,6 @@
 const { Command } = require('../../structures/Structures');
 const { list } = require('../../util/Util');
-const path = require('path');
+const { join } = require('path');
 const sounds = require('../../assets/json/soundboard');
 const throttlingUsages = 1;
 const throttlingDuration = 10;
@@ -39,7 +39,7 @@ module.exports = class SoundBoardCommand extends Command {
         if (this.client.voiceConnections.has(voiceChannel.guild.id)) return message.reply('I am already playing a sound.');
         try {
             const connection = await voiceChannel.join();
-            const dispatcher = connection.play(path.join(__dirname, '..', '..', 'assets', 'sounds', sounds[sound]));
+            const dispatcher = connection.play(join(__dirname, '..', '..', 'assets', 'sounds', sounds[sound]));
             await message.react('🔉');
             dispatcher.once('finish', () => voiceChannel.leave());
             dispatcher.once('error', () => voiceChannel.leave());

@@ -135,7 +135,8 @@ module.exports = class PollCommand extends Command {
             const messageQuestion = await message.say(`**${question}**`);
             await messageQuestion.react(emojiCharacters.thumbsUp);
             await messageQuestion.react(emojiCharacters.thumbsDown);
-        } else {
+        }
+ else {
             const messageQuestion = `**${question}**`;
             const embed = new MessageEmbed();
         }
