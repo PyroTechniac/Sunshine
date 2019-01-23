@@ -21,6 +21,7 @@ module.exports = class JoinCommand extends Command {
                     prompt: 'What is your primary platform for playing Destiny 2?',
                     type: 'string',
                     oneOf: ['xbox', 'ps4', 'pc'],
+                    parse: primaryPlatform => primaryPlatform.toLowerCase(),
                 },
                 {
                     key: 'extraPlatforms',
@@ -69,7 +70,7 @@ module.exports = class JoinCommand extends Command {
             if (role.toLowerCase() === 'none') return;
             await roleResolvable.push(this.client.myGuild.roles.find(r => r.name === `${role.toLowerCase()}-muted`).id);
         });
-        roleResolvable.push(this.client.myGuild.roles.find(role => role.name === `${primaryPlatform.toLowerCase()}`).id);
+        roleResolvable.push(this.client.myGuild.roles.find(role => role.name === `${primaryPlatform}`).id);
         roleResolvable.push(this.client.myRoles.newbies.id);
         roleResolvable.push(this.client.myRoles.all.id);
         const newbieEntry = await newbieTable.findOne({ where: { newbieUserId: message.author.id } });
@@ -95,6 +96,7 @@ module.exports = class JoinCommand extends Command {
         });
         await rosterMessage.react(thumbsUp);
         await rosterMessage.react(thumbsDown);
+        await rosterMessage.react(client.myGuild.emojis.find(e => e.name === `${primaryPlatform}`));
         const filter = (reaction, user) => (reaction.emoji.name === thumbsUp || reaction.emoji.name === thumbsDown) && user.bot !== true;
         const collector = await rosterMessage.createReactionCollector(filter, { max: 1, time: 14400000 });
         collector.on('end', (collected, endReason) => {
