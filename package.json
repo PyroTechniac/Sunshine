@@ -18,7 +18,6 @@
         "url": "git+https://github.com/PyroTechniac/Sunshine-v2"
     },
     "dependencies": {
-        "canvas": "^2.2.0",
         "commando-provider-mongo": "^1.1.1",
         "common-tags": "^1.8.0",
         "convict": "^4.4.0",
