@@ -1,4 +1,3 @@
-const config = require('../config');
 const client = require('../server/client');
 const newbie = require('../server/models');
 const list = `\n\n- \`${client.commandPrefix}join\` will walk you through the process of joining as a new member\n- \`${client.commandPrefix}info\` will show you bot info\n- \`${client.commandPrefix}8ball\` will shake the Magic 8-Ball\n- \`${client.commandPrefix}d20\` will role a D20`;

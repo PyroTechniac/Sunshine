@@ -1,4 +1,3 @@
-const config = require('../config');
 const CronJob = require('cron').CronJob;
 const activities = require('../assets/json/activity.json');
 const client = require('../server/client');
@@ -8,12 +7,12 @@ const members = require('../server/models');
 module.exports = async () => {
   await client.setProvider(new SequelizeProvider(client.database)).catch(error => console.error);
   await client.database.sync();
-  const botUsername = (config.env.substring(0, 5).toLowerCase() === 'prod') ? config.bot.name : `${config.bot.name}DEV`;
+  const botUsername = (client.config.env.substring(0, 5).toLowerCase() === 'prod') ? client.config.bot.name : `${client.config.bot.name}DEV`;
   if (client.user.username !== botUsername) {
     console.log(`[READY] Changing bot username from ${client.user.username} to  ${botUsername}`);
     client.user.setUsername(botUsername);
   }
-  client.myGuild = client.guilds.get(config.server.id) || client.guilds.find(guild => guild.name === config.server.name);
+  client.myGuild = client.guilds.get(client.config.server.id) || client.guilds.find(guild => guild.name === client.config.server.name);
   if (!client.myGuild) throw new Error('Guild Not Found');
   const channelNames = [
     'membership',
@@ -39,13 +38,13 @@ module.exports = async () => {
   //     client.myChannels[channelName] = foundChannel
   // })
   channelNames.forEach(async (channelName) => {
-    const foundChannel = await client.myGuild.channels.get(client.provider.get('global', `${channelName}`, config.server.channels[channelName].id)) || client.myGuild.channels.find(channel => channel.name === config.server.channels[channelName].name);
+    const foundChannel = await client.myGuild.channels.get(client.provider.get('global', `${channelName}`, client.config.server.channels[channelName].id)) || client.myGuild.channels.find(channel => channel.name === client.config.server.channels[channelName].name);
     client.myChannels[channelName] = await foundChannel;
     // console.log(`Setting up channel ${foundChannel.name}`);
   });
   roleNames.forEach(async (roleName) => {
     // Look for role in client settings, then search for it in the guild if fails
-    const foundRole = await client.myGuild.roles.get(client.provider.get('global', `${roleName}`, config.server.roles[roleName].id)) || client.myGuild.roles.find(role => role.name === config.server.roles[roleName].name);
+    const foundRole = await client.myGuild.roles.get(client.provider.get('global', `${roleName}`, client.config.server.roles[roleName].id)) || client.myGuild.roles.find(role => role.name === client.config.server.roles[roleName].name);
     client.myRoles[roleName] = await foundRole;
     // console.log(`Setting up role ${foundRole.name}`);
   });

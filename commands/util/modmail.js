@@ -1,7 +1,6 @@
 const { Command } = require('../../structures/Structures');
 const { MessageEmbed } = require('discord.js');
 const moment = require('moment-timezone');
-const config = require('../../config');
 const { stripIndents } = require('common-tags');
 const { memberRolesMinusEveryone } = require('../../util/Util');
 module.exports = class ModmailCommand extends Command {
@@ -33,7 +32,7 @@ module.exports = class ModmailCommand extends Command {
             return member.say(`Hey! That command must be used in a DM! Please run it again with your message \`\`\`${mail}\`\`\``);
         }
         const modmailEmbed = new MessageEmbed()
-            .setColor(member ? member.displayHexColor : config.bot.embed.color)
+            .setColor(member ? member.displayHexColor : this.client.config.bot.embed.color)
             .setAuthor((member && member.nickname) ? member.nickname : author.username,
                 author.avatarURL()
             )

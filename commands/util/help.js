@@ -1,5 +1,4 @@
 const { stripIndents } = require('common-tags');
-const config = require('../../config');
 const { MessageEmbed } = require('discord.js');
 const throttlingUsages = 1;
 const throttlingDuration = 60;
@@ -32,7 +31,7 @@ module.exports = class HelpCommand extends Command {
       const embed = new MessageEmbed()
         .setTitle('Command List')
         .setDescription(`Use ${message.usage('<command>')} to view detailed information about a command.`)
-        .setColor(config.bot.embed.color)
+        .setColor(this.client.config.bot.embed.color)
         .setFooter(`${this.client.registry.commands.size} Commands`);
       this.client.registry.groups
       // Omit admin and command mgmt groups (unless responding to bot owner)

@@ -1,5 +1,4 @@
 const { Command } = require('../../structures/Structures');
-const config = require('../../config');
 const { stripIndents } = require('common-tags');
 const { MessageEmbed } = require('discord.js');
 const client = require('../../server/client');
@@ -120,7 +119,7 @@ module.exports = class SetupCommand extends Command {
     await this.client.provider.set('global', 'all', all.id);
     await this.client.provider.set('global', 'voucherTarget', vouchers);
     const embed = await new MessageEmbed()
-      .setColor(config.bot.embed.color)
+      .setColor(this.client.config.bot.embed.color)
       .setDescription('**Current Server Settings:**')
       .addField('❯ Channels:', stripIndents`
             Membership: ${this.client.myChannels.membership}

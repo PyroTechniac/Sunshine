@@ -2,7 +2,6 @@ const { MessageEmbed } = require('discord.js');
 const moment = require('moment');
 require('moment-duration-format');
 const { Command } = require('../../structures/Structures');
-const config = require('../../config');
 const { version } = require('../../package');
 const { formatNumber } = require('../../util/Util');
 module.exports = class InfoCommand extends Command {
@@ -19,7 +18,7 @@ module.exports = class InfoCommand extends Command {
     }
     run(message) {
         const embed = new MessageEmbed()
-            .setColor(config.bot.embed.color)
+            .setColor(this.client.config.bot.embed.color)
             .addField('❯ Servers', formatNumber(this.client.guilds.size), true)
             .addField('❯ Shards', formatNumber(this.client.options.shardCount), true)
             .addField('❯ Commands', formatNumber(this.client.registry.commands.size), true)

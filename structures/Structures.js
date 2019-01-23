@@ -42,6 +42,7 @@ class SunshineClient extends CommandoClient {
   constructor(options) {
     super(options);
     this.database = SQLite.db;
+    this.config = config;
     SQLite.start();
   }
 }
