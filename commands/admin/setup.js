@@ -21,7 +21,6 @@ module.exports = class SetupCommand extends Command {
   constructor(client) {
     super(client, {
       name: 'setup',
-      ownerOnly: true,
       group: 'admin',
       memberName: 'setup',
       guildOnly: true,
@@ -89,6 +88,10 @@ module.exports = class SetupCommand extends Command {
         },
       ],
     });
+  }
+  hasPermission(message) {
+    if (message.member.hasPermission('ADMINISTRATOR')) return true;
+    return 'You do not have permission to use the setup command!';
   }
   async reassignChannel(name, newChannel) {
     return this.client.myChannels[name] = await newChannel;
