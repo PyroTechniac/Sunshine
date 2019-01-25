@@ -31,12 +31,6 @@ module.exports = async () => {
   ];
   client.myChannels = {};
   client.myRoles = {};
-  // channelNames.forEach((channelName) => {
-  //     const foundChannel = client.myGuild.channels.get(config.server.channels[channelName].id) || client.myGuild.channels.find(channel => channel.name === config.server.channels[channelName].name)
-  //     if (!foundChannel) throw new Error(`Channel ${config.server.channels[channelName].name} not found`)
-  //     //console.log(`[READY] Registering channel ${channelName}`)
-  //     client.myChannels[channelName] = foundChannel
-  // })
   channelNames.forEach(async (channelName) => {
     const foundChannel = await client.myGuild.channels.get(client.provider.get('global', `${channelName}`, client.config.server.channels[channelName].id)) || client.myGuild.channels.find(channel => channel.name === client.config.server.channels[channelName].name);
     client.myChannels[channelName] = await foundChannel;
@@ -53,13 +47,6 @@ module.exports = async () => {
   //   console.log(readyNewbies);
   // }).start();
   client.voucherTarget = client.provider.get('global', 'voucherTarget', '5');
-  // roleNames.forEach((roleName) => {
-  //     const foundRole = client.myGuild.roles.get(config.server.roles[roleName].id) || client.myGuild.roles.find(role => role.name === config.server.roles[roleName].name)
-  //     if (!foundRole) throw new Error(`Channel ${config.server.channels[foundRole].name} not found`)
-  //     //console.log(`[READY] Registering role ${roleName}`)
-  //     client.myRoles[roleName] = foundRole;
-  // })
-  // console.log(client.myChannels)
   const firstActivity = activities[Math.floor(Math.random() * activities.length)];
   client.user.setActivity(firstActivity.text, { type: firstActivity.type });
   client.setInterval(() => {
