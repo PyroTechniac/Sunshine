@@ -14,9 +14,9 @@ module.exports = class FirstMessageCommand extends Command {
                     key: 'channel',
                     prompt: 'Which channel would you like to get the first message of?',
                     type: 'channel',
-                    default: message => message.channel,
-                },
-            ],
+                    default: message => message.channel
+                }
+            ]
         });
     }
     async run(message, { channel }) {

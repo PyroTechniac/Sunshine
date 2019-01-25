@@ -7,7 +7,7 @@ const activities = {
     PLAYING: 'Playing',
     STREAMING: 'Streaming',
     WATCHING: 'Watching',
-    LISTENING: 'Listening to',
+    LISTENING: 'Listening to'
 };
 
 module.exports = class UserCommand extends Command {
@@ -25,9 +25,9 @@ module.exports = class UserCommand extends Command {
                     key: 'user',
                     prompt: 'Which user would you like to get information on?',
                     type: 'user',
-                    default: msg => msg.author,
-                },
-            ],
+                    default: msg => msg.author
+                }
+            ]
         });
     }
 

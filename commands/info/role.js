@@ -16,9 +16,9 @@ module.exports = class RoleCommand extends Command {
                 {
                     key: 'role',
                     prompt: 'Which role would you like to get information on?',
-                    type: 'role',
-                },
-            ],
+                    type: 'role'
+                }
+            ]
         });
     }
     run(message, { role }) {

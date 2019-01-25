@@ -8,14 +8,14 @@ const channelNames = [
   'modmail',
   'public',
   'roster',
-  'welcome',
+  'welcome'
 ];
 const roleNames = [
   'admins',
   'mods',
   'members',
   'newbies',
-  'all',
+  'all'
 ];
 module.exports = class SetupCommand extends Command {
   constructor(client) {
@@ -29,64 +29,64 @@ module.exports = class SetupCommand extends Command {
         {
           key: 'membership',
           prompt: 'Please #-link the membership channel',
-          type: 'channel',
+          type: 'channel'
         },
         {
           key: 'meta',
           prompt: 'Please #-link the meta channel',
-          type: 'channel',
+          type: 'channel'
         },
         {
           key: 'modmail',
           prompt: 'Please #-link the modmail channel',
-          type: 'channel',
+          type: 'channel'
         },
         {
           key: 'newbie',
           prompt: 'Please #-link the public channel',
-          type: 'channel',
+          type: 'channel'
         },
         {
           key: 'roster',
           prompt: 'Please #-link the roster changes channel',
-          type: 'channel',
+          type: 'channel'
         },
         {
           key: 'welcome',
           prompt: 'Please #-link the welcome channel',
-          type: 'channel',
+          type: 'channel'
         },
         {
           key: 'admins',
           prompt: 'Please @-mention the admins role',
-          type: 'role',
+          type: 'role'
         },
         {
           key: 'mods',
           prompt: 'Please @-mention the mods role',
-          type: 'role',
+          type: 'role'
         },
         {
           key: 'members',
           prompt: 'Please @-mention the members role',
-          type: 'role',
+          type: 'role'
         },
         {
           key: 'newbies',
           prompt: 'Please @-mention the newbies role',
-          type: 'role',
+          type: 'role'
         },
         {
           key: 'all',
           prompt: 'Please @-mention the all role (NOT @everyone)',
-          type: 'role',
+          type: 'role'
         },
         {
           key: 'vouchers',
           prompt: 'What is the voucher target for flermlings?',
-          type: 'integer',
-        },
-      ],
+          type: 'integer'
+        }
+      ]
     });
   }
   hasPermission(message) {

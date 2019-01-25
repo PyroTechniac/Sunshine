@@ -8,7 +8,7 @@ const config = convict({
     format: ['prod', 'dev', 'test'],
     default: 'dev',
     env: 'NODE_ENV',
-    arg: 'env',
+    arg: 'env'
   },
   bot: {
     name: {
@@ -16,7 +16,7 @@ const config = convict({
       format: String,
       default: 'Sunshine',
       env: 'BOT_NAME',
-      arg: 'bot-name',
+      arg: 'bot-name'
     },
     token: {
       doc: 'Discord bot token',
@@ -26,28 +26,28 @@ const config = convict({
       default: '',
       sensitive: true,
       env: 'TOKEN',
-      arg: 'token',
+      arg: 'token'
     },
     owners: {
       doc: 'Discord Bot Owner IDs, separated by commas',
       format: String,
       default: '',
       env: 'OWNERS',
-      arg: 'owners',
+      arg: 'owners'
     },
     prefix: {
       doc: 'Default Prefix',
       format: String,
       default: '/',
       env: 'PREFIX',
-      arg: 'prefix',
+      arg: 'prefix'
     },
     invite: {
       doc: 'Invite to support server',
       format: String,
       default: '',
       env: 'INVITE',
-      arg: 'invite',
+      arg: 'invite'
     },
     embed: {
       color: {
@@ -55,9 +55,9 @@ const config = convict({
         format: Number,
         default: 15844367,
         env: 'EMBED_COLOR',
-        arg: 'color',
-      },
-    },
+        arg: 'color'
+      }
+    }
   },
   server: {
     id: {
@@ -65,14 +65,14 @@ const config = convict({
       format: String,
       default: '',
       env: 'SERVER_ID',
-      arg: 'id',
+      arg: 'id'
     },
     name: {
       doc: 'The Name for the Flerm Server',
       format: String,
       default: 'Ermahgerd Flermerngers',
       env: 'SERVER_NAME',
-      arg: 'name',
+      arg: 'name'
     },
     channels: {
       voice: {
@@ -81,15 +81,15 @@ const config = convict({
           format: String,
           default: '',
           env: 'CHANNEL_VOICE_ID',
-          arg: 'channel-voice-id',
+          arg: 'channel-voice-id'
         },
         name: {
           doc: 'The name for the voice channel',
           format: String,
           default: 'Karaoke Lounge',
           env: 'CHANNEL_VOICE_NAME',
-          arg: 'channel-voice-name',
-        },
+          arg: 'channel-voice-name'
+        }
       },
       public: {
         id: {
@@ -97,15 +97,15 @@ const config = convict({
           format: String,
           default: '',
           env: 'CHANNEL_PUBLIC_ID',
-          arg: 'channel-public-id',
+          arg: 'channel-public-id'
         },
         name: {
           doc: 'The name for the public channel',
           format: String,
           default: 'public',
           env: 'CHANNEL_PUBLIC_NAME',
-          arg: 'channel-public-name',
-        },
+          arg: 'channel-public-name'
+        }
       },
       welcome: {
         id: {
@@ -113,15 +113,15 @@ const config = convict({
           format: String,
           default: '',
           env: 'CHANNEL_WELCOME_ID',
-          arg: 'channel-welcome-id',
+          arg: 'channel-welcome-id'
         },
         name: {
           doc: 'The name for the welcome channel',
           format: String,
           default: 'welcome',
           env: 'CHANNEL_WELCOME_NAME',
-          arg: 'channel-welcome-name',
-        },
+          arg: 'channel-welcome-name'
+        }
       },
       modmail: {
         id: {
@@ -129,15 +129,15 @@ const config = convict({
           format: String,
           default: '',
           env: 'CHANNEL_MODMAIL_ID',
-          arg: 'channel-modmail-id',
+          arg: 'channel-modmail-id'
         },
         name: {
           doc: 'The name for the modmail channel',
           format: String,
           default: 'modmail',
           env: 'CHANNEL_MODMAIL_NAME',
-          arg: 'channel-modmail-name',
-        },
+          arg: 'channel-modmail-name'
+        }
       },
       meta: {
         id: {
@@ -145,15 +145,15 @@ const config = convict({
           format: String,
           default: '',
           env: 'CHANNEL_META_ID',
-          arg: 'channel-meta-id',
+          arg: 'channel-meta-id'
         },
         name: {
           doc: 'The name of the meta channel',
           format: String,
           default: 'clan-discussion',
           env: 'CHANNEL_META_NAME',
-          arg: 'channel-meta-name',
-        },
+          arg: 'channel-meta-name'
+        }
       },
       membership: {
         id: {
@@ -161,15 +161,15 @@ const config = convict({
           format: String,
           default: '',
           env: 'CHANNEL_MEMBERSHIP_ID',
-          arg: 'channel-membership-id',
+          arg: 'channel-membership-id'
         },
         name: {
           doc: 'The name of the membership channel',
           format: String,
           default: 'membership',
           env: 'CHANNEL_MEMBERSHIP_NAME',
-          arg: 'channel-membership-name',
-        },
+          arg: 'channel-membership-name'
+        }
       },
       roster: {
         id: {
@@ -177,16 +177,16 @@ const config = convict({
           format: String,
           default: '',
           env: 'CHANNEL_ROSTER_ID',
-          arg: 'channel-ROSTER-id',
+          arg: 'channel-ROSTER-id'
         },
         name: {
           doc: 'The name of the roster channel',
           format: String,
           default: 'roster-changes',
           env: 'CHANNEL_ROSTER_NAME',
-          arg: 'channel-ROSTER-name',
-        },
-      },
+          arg: 'channel-ROSTER-name'
+        }
+      }
     },
     roles: {
       all: {
@@ -195,15 +195,15 @@ const config = convict({
           format: String,
           default: '',
           env: 'ROLE_IMPORTANT_ID',
-          arg: 'role-important-id',
+          arg: 'role-important-id'
         },
         name: {
           doc: 'The name of the important role',
           format: String,
           default: 'important',
           env: 'ROLE_IMPORTANT_NAME',
-          arg: 'role-important-name',
-        },
+          arg: 'role-important-name'
+        }
       },
       admins: {
         id: {
@@ -211,15 +211,15 @@ const config = convict({
           format: String,
           default: '',
           env: 'ROLE_ADMIN_ID',
-          arg: 'role-admin-id',
+          arg: 'role-admin-id'
         },
         name: {
           doc: 'The name of the admin role',
           format: String,
           default: 'admins',
           env: 'ROLE_ADMIN_NAME',
-          arg: 'role-admin-name',
-        },
+          arg: 'role-admin-name'
+        }
       },
       mods: {
         id: {
@@ -227,15 +227,15 @@ const config = convict({
           format: String,
           default: '',
           env: 'ROLE_MOD_ID',
-          arg: 'role-mod-id',
+          arg: 'role-mod-id'
         },
         name: {
           doc: 'The name of the mod role',
           format: String,
           default: 'mods',
           env: 'ROLE_MOD_NAME',
-          arg: 'role-mod-name',
-        },
+          arg: 'role-mod-name'
+        }
       },
       members: {
         id: {
@@ -243,15 +243,15 @@ const config = convict({
           format: String,
           default: '',
           env: 'ROLE_MEMBER_ID',
-          arg: 'role-member-id',
+          arg: 'role-member-id'
         },
         name: {
           doc: 'The name of the member role',
           format: String,
           default: 'flermerngers',
           env: 'ROLE_MEMBER_NAME',
-          arg: 'role-member-name',
-        },
+          arg: 'role-member-name'
+        }
       },
       newbies: {
         id: {
@@ -259,17 +259,17 @@ const config = convict({
           format: String,
           default: '',
           env: 'ROLE_NEWBIE_ID',
-          arg: 'role-newbie-id',
+          arg: 'role-newbie-id'
         },
         name: {
           doc: 'The name of the newbie role',
           format: String,
           default: 'flermlings',
           env: 'ROLE_NEWBIE_NAME',
-          arg: 'role-newbie-name',
-        },
-      },
-    },
+          arg: 'role-newbie-name'
+        }
+      }
+    }
   },
   db: {
     username: {
@@ -278,7 +278,7 @@ const config = convict({
       default: 'username',
       sensitive: true,
       env: 'DB_USERNAME',
-      arg: 'db-username',
+      arg: 'db-username'
     },
     password: {
       doc: 'Database password',
@@ -286,7 +286,7 @@ const config = convict({
       default: 'password',
       sensitive: true,
       env: 'DB_PASSWORD',
-      arg: 'db-password',
+      arg: 'db-password'
     },
     host: {
       doc: 'Database host name/IP',
@@ -294,21 +294,21 @@ const config = convict({
       default: 'localhost',
       sensitive: true,
       env: 'DB_HOST',
-      arg: 'db-host',
+      arg: 'db-host'
     },
     port: {
       doc: 'Database Port',
       format: Number,
       default: 27017,
       env: 'DB_PORT',
-      arg: 'db-port',
+      arg: 'db-port'
     },
     name: {
       doc: 'Database Name',
       format: String,
       default: 'Sunshine',
       env: 'DB_NAME',
-      arg: 'db-name',
+      arg: 'db-name'
     },
     url: {
       doc: 'Database URL',
@@ -316,16 +316,16 @@ const config = convict({
       default: 'mongodb://localhost:27017/Sunshine',
       sensitive: true,
       env: 'DB_URL',
-      arg: 'db-url',
+      arg: 'db-url'
     },
     dialect: {
       doc: 'Database Dialect',
       format: String,
       default: 'sqlite',
       env: 'DB_DIALECT',
-      arg: 'db-dialect',
-    },
-  },
+      arg: 'db-dialect'
+    }
+  }
 
 });
 const env = config.get('env');

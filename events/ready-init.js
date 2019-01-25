@@ -20,14 +20,14 @@ module.exports = async () => {
     'modmail',
     'public',
     'roster',
-    'welcome',
+    'welcome'
   ];
   const roleNames = [
     'admins',
     'mods',
     'members',
     'newbies',
-    'all',
+    'all'
   ];
   client.myChannels = {};
   client.myRoles = {};

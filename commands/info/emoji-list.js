@@ -17,9 +17,9 @@ module.exports = class EmojiListCommand extends Command {
                     type: 'string',
                     default: 'regular',
                     oneOf: types,
-                    parse: type => type.toLowerCase(),
-                },
-            ],
+                    parse: type => type.toLowerCase()
+                }
+            ]
         });
     }
     run(message, { type }) {

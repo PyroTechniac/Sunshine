@@ -13,9 +13,9 @@ module.exports = class AvatarCommand extends Command {
                     key: 'user',
                     prompt: 'Which user would you like to get the avatar of?',
                     type: 'user',
-                    default: message => message.author,
-                },
-            ],
+                    default: message => message.author
+                }
+            ]
         });
     }
     run(message, { user }) {

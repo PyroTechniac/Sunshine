@@ -11,7 +11,7 @@ module.exports = class ChangelogCommand extends Command {
             group: 'admin',
             memberName: 'changelog',
             description: 'Responds with the bot\'s latest 10 commits.',
-            guarded: true,
+            guarded: true
         });
     }
     async run(message) {

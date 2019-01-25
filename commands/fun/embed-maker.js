@@ -8,7 +8,7 @@ module.exports = class EmbedMakerCommand extends Command {
             group: 'fun',
             memberName: 'embed-maker',
             description: 'An interactive embed maker!',
-            throttling: { usages: 1, duration: 30 },
+            throttling: { usages: 1, duration: 30 }
         });
     }
     async run(message) {

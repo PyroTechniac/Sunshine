@@ -6,7 +6,7 @@ module.exports = class PunCommand extends Command {
             name: 'pun',
             group: 'fun',
             memberName: 'pun',
-            description: 'Responds with a random pun.',
+            description: 'Responds with a random pun.'
         });
     }
     run(message) {

@@ -10,7 +10,7 @@ module.exports = class D20Command extends Command {
             memberName: 'd20',
             description: `Roll a d20! ${throttlingDesc}`,
             throttling: { usages: throttlingUsages, duration: throttlingDuration },
-            guildOnly: true,
+            guildOnly: true
         });
     }
     run(message) {

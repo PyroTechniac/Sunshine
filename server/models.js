@@ -4,7 +4,7 @@ const members = client.database.define('members', {
     newbieUserId: {
         type: STRING,
         primaryKey: true,
-        unique: true,
+        unique: true
     },
     gamerTag: STRING,
     tidbit: TEXT,
@@ -13,16 +13,16 @@ const members = client.database.define('members', {
     emailAddress: STRING,
     vouches: {
         type: INTEGER,
-        defaultValue: 0,
+        defaultValue: 0
     },
     vouchedBy: STRING,
     joinStatus: STRING,
-    rosterMessage: STRING,
+    rosterMessage: STRING
 }, {
         hooks: {
             afterUpdate: (newbie) => {
                 // console.log(newbie);
-            },
-        },
+            }
+        }
     });
 module.exports = members;

@@ -19,9 +19,9 @@ module.exports = class PruneCommand extends Command {
                     prompt: 'How many messages do you want to delete? Limit up to 99',
                     type: 'integer',
                     min: 1,
-                    max: 99,
-                },
-            ],
+                    max: 99
+                }
+            ]
         });
     }
     async run(message, { count }) {

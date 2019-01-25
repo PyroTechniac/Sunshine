@@ -24,9 +24,9 @@ module.exports = class SoundBoardCommand extends Command {
                     prompt: `What sound would you like to play? Either ${list(Object.keys(sounds), 'or')}`,
                     type: 'string',
                     oneOf: Object.keys(sounds),
-                    parse: sound => sound.toLowerCase(),
-                },
-            ],
+                    parse: sound => sound.toLowerCase()
+                }
+            ]
         });
     }
     async run(message, { sound }) {

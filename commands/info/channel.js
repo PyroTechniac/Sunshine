@@ -7,7 +7,7 @@ const types = {
     text: 'Text Channel',
     voice: 'Voice Channel',
     category: 'Category',
-    unknown: 'Unknown',
+    unknown: 'Unknown'
 };
 module.exports = class ChannelCommand extends Command {
     constructor(client) {
@@ -23,9 +23,9 @@ module.exports = class ChannelCommand extends Command {
                     key: 'channel',
                     prompt: 'Which channel would you like to get information on?',
                     type: 'channel',
-                    default: message => message.channel,
-                },
-            ],
+                    default: message => message.channel
+                }
+            ]
         });
     }
     run(message, { channel }) {

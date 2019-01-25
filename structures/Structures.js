@@ -7,7 +7,7 @@ const options = {
   logging: false,
   operatorAliases: false,
   storage: 'sunshine.sqlite',
-  dialect: config.db.dialect,
+  dialect: config.db.dialect
 };
 const db = new Sequelize(config.db.username, config.db.password, config.db.host, options);
 class SunshineCommand extends Command {
@@ -48,5 +48,5 @@ class SunshineClient extends CommandoClient {
 }
 module.exports = {
   Command: SunshineCommand,
-  Client: SunshineClient,
+  Client: SunshineClient
 };

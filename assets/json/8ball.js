@@ -41,5 +41,5 @@ module.exports = [
     'I made this for you ⛄️',
     'Have a potato 🥔',
     '🦄',
-    '👁 👁',
+    '👁 👁'
 ];

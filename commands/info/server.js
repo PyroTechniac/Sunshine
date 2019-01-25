@@ -14,7 +14,7 @@ module.exports = class ServerCommand extends Command {
             memberName: 'server',
             description: 'Responds with detailed information on the server.',
             guildOnly: true,
-            clientPermissions: ['EMBED_LINKS'],
+            clientPermissions: ['EMBED_LINKS']
         });
     }
 

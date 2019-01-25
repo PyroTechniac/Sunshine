@@ -12,9 +12,9 @@ module.exports = class IDCommand extends Command {
                     key: 'user',
                     prompt: 'Which user do you want to get the ID of?',
                     type: 'user',
-                    default: message => message.author,
-                },
-            ],
+                    default: message => message.author
+                }
+            ]
         });
     }
     run(message, { user }) {

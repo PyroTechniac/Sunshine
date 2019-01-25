@@ -16,9 +16,9 @@ module.exports = class ModmailCommand extends Command {
                 {
                     key: 'mail',
                     prompt: 'What do you want to send to the mods?',
-                    type: 'string',
-                },
-            ],
+                    type: 'string'
+                }
+            ]
         });
     }
     async run(message, { mail }) {
@@ -41,7 +41,7 @@ module.exports = class ModmailCommand extends Command {
                 message.reply({
                     content: stripIndents`:incoming_envelope: I\'m sending your message on to the mods!
                     Mods are happy to help and appreciate the continued responsible use of modmail.`,
-                    embed: modmailEmbed,
+                    embed: modmailEmbed
                 });
             }
             catch (error) {
@@ -56,7 +56,7 @@ module.exports = class ModmailCommand extends Command {
             try {
                 await this.client.myChannels.modmail.send({
                     content: ':incoming_envelope: New Modmail Message',
-                    embed: modmailEmbed,
+                    embed: modmailEmbed
                 });
             }
             catch (error) {

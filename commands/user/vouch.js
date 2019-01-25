@@ -11,9 +11,9 @@ module.exports = class VouchCommand extends Command {
                 {
                     key: 'newbie',
                     prompt: 'Enter the newbie you want to vouch for',
-                    type: 'member',
-                },
-            ],
+                    type: 'member'
+                }
+            ]
         });
     }
     async run(message, { newbie }) {

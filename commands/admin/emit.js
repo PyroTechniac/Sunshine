@@ -9,7 +9,7 @@ module.exports = class EmitCommand extends Command {
       // ownerOnly: true,
       guildOnly: true,
       memberName: 'emit',
-      description: 'For emitting events to the client for testing',
+      description: 'For emitting events to the client for testing'
     });
   }
 

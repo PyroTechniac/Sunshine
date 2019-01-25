@@ -19,9 +19,9 @@ module.exports = class HelpCommand extends Command {
           key: 'command',
           prompt: 'Enter the command you would like to view the help for',
           type: 'command',
-          default: '',
-        },
-      ],
+          default: ''
+        }
+      ]
 
     });
   }

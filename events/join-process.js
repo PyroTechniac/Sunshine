@@ -18,7 +18,7 @@ module.exports = async (member) => {
       vouches: 0,
       vouchedBy: '',
       joinStatus: 'GUEST',
-      rosterMessage: rosterMessage.id,
-    },
+      rosterMessage: rosterMessage.id
+    }
   });
 };

@@ -11,7 +11,7 @@ const client = new Client({
   invite: config.bot.invite,
   disableEveryone: true,
   unknownCommandResponse: false,
-  disabledEvents: ['TYPING_START'],
+  disabledEvents: ['TYPING_START']
 });
 client.registry
   .registerDefaultTypes()
@@ -23,11 +23,11 @@ client.registry
     ['user', 'User Commands'],
     ['info', 'Discord Information'],
     ['fun', 'Just for Fun'],
-    ['voice', 'Voice Commands'],
+    ['voice', 'Voice Commands']
   ])
   .registerDefaultCommands({
     help: false,
-    ping: false,
+    ping: false
   })
   .registerCommandsIn({ dirname: join(__dirname, '../commands') });
 client.database.sync();

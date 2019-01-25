@@ -21,9 +21,9 @@ module.exports = class EightBallCommand extends Command {
                     key: 'question',
                     prompt: 'What do you want to ask the Magic 8-Ball?',
                     type: 'string',
-                    max: 500,
-                },
-            ],
+                    max: 500
+                }
+            ]
         });
     }
     run(message, { question }) {

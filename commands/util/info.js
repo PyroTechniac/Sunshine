@@ -13,7 +13,7 @@ module.exports = class InfoCommand extends Command {
             memberName: 'info',
             description: 'Responds with detailed bot information',
             guarded: true,
-            clientPermissions: ['EMBED_LINKS'],
+            clientPermissions: ['EMBED_LINKS']
         });
     }
     run(message) {
