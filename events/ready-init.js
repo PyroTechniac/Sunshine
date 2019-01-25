@@ -5,10 +5,12 @@ const SequelizeProvider = require('../providers/Sequelize');
 const members = require('../server/models');
 
 module.exports = async () => {
+  // TODO: Set provider in the client file instead of here (not consistently holding data)
   await client.setProvider(new SequelizeProvider(client.database)).catch(error => console.error);
   await client.database.sync();
   const botUsername = (client.config.env.substring(0, 5).toLowerCase() === 'prod') ? client.config.bot.name : `${client.config.bot.name}DEV`;
   if (client.user.username !== botUsername) {
+    // Set the username to nameDEV if still in testing or developement
     console.log(`[READY] Changing bot username from ${client.user.username} to  ${botUsername}`);
     client.user.setUsername(botUsername);
   }
@@ -32,6 +34,7 @@ module.exports = async () => {
   client.myChannels = {};
   client.myRoles = {};
   channelNames.forEach(async (channelName) => {
+    // Look for the channel ID in the settings, then look for it based on ID in config, then look for it by name
     const foundChannel = await client.myGuild.channels.get(client.provider.get('global', `${channelName}`, client.config.server.channels[channelName].id)) || client.myGuild.channels.find(channel => channel.name === client.config.server.channels[channelName].name);
     client.myChannels[channelName] = await foundChannel;
     // console.log(`Setting up channel ${foundChannel.name}`);

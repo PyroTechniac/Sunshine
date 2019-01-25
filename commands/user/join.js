@@ -64,17 +64,22 @@ module.exports = class JoinCommand extends Command {
         // TODO: Try to move this to top of file (throwing error)
         const newbieTable = require('../../server/models');
         const platformArray = extraPlatforms.split(' ');
+        // Find the flermling in the server
         const flermling = await this.client.myGuild.members.fetch(message.author.id);
         const roleResolvable = [];
         platformArray.forEach(async role => {
             if (role.toLowerCase() === 'none') return;
+            // Add additional platform roles to the roleResolvable array
             await roleResolvable.push(this.client.myGuild.roles.find(r => r.name === `${role.toLowerCase()}-muted`).id);
         });
+        // Add the primary platform, flermlings, and important role to the array
         roleResolvable.push(this.client.myGuild.roles.find(role => role.name === `${primaryPlatform}`).id);
         roleResolvable.push(this.client.myRoles.newbies.id);
         roleResolvable.push(this.client.myRoles.all.id);
+        // Finds the entry in the table
         const newbieEntry = await newbieTable.findOne({ where: { newbieUserId: message.author.id } });
         let rosterMessage = await this.client.myChannels.roster.messages.fetch(newbieEntry.rosterMessage);
+        // Send or edit the roster message
         if (rosterMessage === 'undefined') {
             rosterMessage = await this.client.myChannels.roster.send(`New Flermling ${flermling}\`\`\`${tidbit}\`\`\``);
         }
@@ -90,6 +95,7 @@ module.exports = class JoinCommand extends Command {
             rosterMessage: rosterMessage.id
         });
         await rosterMessage.edit(`New Flermling ${flermling}\`\`\`${tidbit}\`\`\``);
+        // Update the flermling in the server, then add reactions to the roster changes post for approval
         await flermling.edit({
             nick: gamertag,
             roles: roleResolvable
@@ -100,6 +106,9 @@ module.exports = class JoinCommand extends Command {
         const filter = (reaction, user) => (reaction.emoji.name === thumbsUp || reaction.emoji.name === thumbsDown) && user.bot !== true;
         const collector = await rosterMessage.createReactionCollector(filter, { max: 1, time: 14400000 });
         collector.on('end', (collected, endReason) => {
+            // Sends the welcome message for the flermling
+            // TODO: allow the ability to disapprove of flermlings join forms and run a command to update them
+            // TODO: add manual welcome command in case time expires
             this.client.myChannels.welcome.send(`${this.client.myRoles.all} Help me welcome our newest flermling ${flermling}! :hatched_chick:\n\nNew guy/gal -- as you may have seen, we have a join process to make sure you're a good fit for our community. As mentioned in ${this.client.myGuild.channels.find(c => c.name === 'getting-started')}, you'll need to participate both **in game** to get vouched and **here in Discord to gain server rank**...\n\n1. When you're ready to play, head over to ${this.client.myGuild.channels.find(c => c.name === `${primaryPlatform.toLowerCase()}-destiny-lfg`)} and send command \`!need-vouch-${primaryPlatform.toLowerCase()}\` to ask our friendly members to team up with you -- you need **five** of them to play with and :point_up: vouch for you\n\n2. Keep participating here in Discord until you reach **level 4** (40 messages send w/ 1-min cooldown) -- as a Flermling, you can send messages in your platform LFG channel plus ${this.client.myChannels.welcome}, ${this.client.myGuild.channels.find(c => c.name === 'kudos')}, ${this.client.myChannels.meta}, ${this.client.myGuild.channels.find(c => c.name === 'ask-the-mods')}, ${this.client.myGuild.channels.find(c => c.name === 'ask-a-bot')}, ${this.client.myGuild.channels.find(c => c.name === 'destiny')}, and ${this.client.myGuild.channels.find(c => c.name === 'lounge')}\n\nAfter that, you'll be a full fledged Flermernger -- with full Discord access and eligible to join the in-game-clan! :flermernger:`);
         });
     }

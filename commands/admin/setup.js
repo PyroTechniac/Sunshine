@@ -94,9 +94,11 @@ module.exports = class SetupCommand extends Command {
     return 'You do not have permission to use the setup command!';
   }
   async reassignChannel(name, newChannel) {
+    // Reassign's the channel object on the client so no reboot is required
     return this.client.myChannels[name] = await newChannel;
   }
   async reassignRole(name, newRole) {
+    // Reassign's the role object on the client so no reboot is required
     return this.client.myRoles[name] = await newRole;
   }
   async run(message, { membership, meta, modmail, newbie, roster, welcome, admins, mods, members, newbies, all, vouchers }) {
@@ -109,6 +111,7 @@ module.exports = class SetupCommand extends Command {
     for (let i = 0; i < roles.length; i++) {
       this.reassignRole(roleNames[i], roles[i]);
     }
+    // Sets all the settings in the provider
     await this.client.provider.set('global', 'membership', membership.id);
     await this.client.provider.set('global', 'meta', meta.id);
     await this.client.provider.set('global', 'modmail', modmail.id);

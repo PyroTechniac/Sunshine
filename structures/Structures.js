@@ -8,6 +8,7 @@ const options = {
   operatorAliases: false,
   storage: 'sunshine.sqlite',
   dialect: config.db.dialect
+  // Options for the database
 };
 const db = new Sequelize(config.db.username, config.db.password, config.db.host, options);
 class SunshineCommand extends Command {
@@ -42,6 +43,7 @@ class SunshineClient extends CommandoClient {
   constructor(options) {
     super(options);
     this.database = SQLite.db;
+    // Attaching config to client to access it throughout commands easily
     this.config = config;
     SQLite.start();
   }

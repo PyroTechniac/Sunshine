@@ -18,7 +18,11 @@ module.exports = class ModmailCommand extends Command {
                     prompt: 'What do you want to send to the mods?',
                     type: 'string'
                 }
-            ]
+            ],
+            throttling: {
+                usages: 1,
+                duration: 1800
+            }
         });
     }
     async run(message, { mail }) {
@@ -27,6 +31,7 @@ module.exports = class ModmailCommand extends Command {
         const member = this.client.myGuild.member(author);
         if (author.bot) return;
         if (!member) return;
+        // Delete the message and DM the user that the command is DM only
         if (message.channel.type !== 'dm') {
             await message.delete();
             return member.say(`Hey! That command must be used in a DM! Please run it again with your message \`\`\`${mail}\`\`\``);
@@ -38,6 +43,7 @@ module.exports = class ModmailCommand extends Command {
             )
             .setDescription(mail);
             try {
+                // Send the message back to them
                 message.reply({
                     content: stripIndents`:incoming_envelope: I\'m sending your message on to the mods!
                     Mods are happy to help and appreciate the continued responsible use of modmail.`,
@@ -47,7 +53,7 @@ module.exports = class ModmailCommand extends Command {
             catch (error) {
                 console.error(error);
             }
-
+            // Add additional information, such as join time and roles
             modmailEmbed
             .addBlankField()
             .addField('❯ Joined: ', moment(member.joinedAt).from(now), true)
