@@ -15,14 +15,7 @@ const members = client.database.define('members', {
         type: INTEGER,
         defaultValue: 0
     },
-    vouchedBy: STRING,
     joinStatus: STRING,
     rosterMessage: STRING
-}, {
-        hooks: {
-            afterUpdate: (newbie) => {
-                // console.log(newbie);
-            }
-        }
-    });
+});
 module.exports = members;
