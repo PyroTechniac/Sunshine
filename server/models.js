@@ -18,4 +18,12 @@ const members = client.database.define('members', {
     joinStatus: STRING,
     rosterMessage: STRING
 });
-module.exports = members;
+const vouches = client.database.define('vouches', {
+    voucherId: STRING,
+    voucheeId: STRING,
+    reason: TEXT
+});
+module.exports = {
+    memberTable: members,
+    vouchesTable: vouches
+};
