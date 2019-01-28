@@ -30,6 +30,7 @@ const vouches = client.database.define('vouches', {
     reason: TEXT
 });
 members.hasMany(vouches, {
+    as: 'vouchees',
     constraints: true,
     foreignKey: {
         field: 'voucheeId',
@@ -39,6 +40,7 @@ members.hasMany(vouches, {
     onUpdate: 'NO ACTION'
 });
 members.hasMany(vouches, {
+    as: 'vouchers',
     constraints: true,
     foreignKey: {
         field: 'voucherId',
