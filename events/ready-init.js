@@ -2,12 +2,15 @@ const CronJob = require('cron').CronJob;
 const activities = require('../assets/json/activity.json');
 const client = require('../server/client');
 const SequelizeProvider = require('../providers/Sequelize');
-const members = require('../server/models');
+const { memberTable, vouchesTable } = require('../server/models');
 
 module.exports = async () => {
   // TODO: Set provider in the client file instead of here (not consistently holding data)
   await client.setProvider(new SequelizeProvider(client.database)).catch(error => console.error);
-  await client.database.sync();
+  const clientSync = client.database.sync();
+  const vouchesSync = vouchesTable.sync();
+  const memberSync = memberTable.sync();
+  Promise.all([clientSync, vouchesSync, memberSync]);
   const botUsername = (client.config.env.substring(0, 5).toLowerCase() === 'prod') ? client.config.bot.name : `${client.config.bot.name}DEV`;
   if (client.user.username !== botUsername) {
     // Set the username to nameDEV if still in testing or developement

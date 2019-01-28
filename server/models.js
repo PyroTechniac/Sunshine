@@ -19,8 +19,14 @@ const members = client.database.define('members', {
     rosterMessage: STRING
 });
 const vouches = client.database.define('vouches', {
-    voucherId: STRING,
-    voucheeId: STRING,
+    voucherId: {
+        type: STRING,
+        primaryKey: true
+    },
+    voucheeId: {
+        type: STRING,
+        primaryKey: true
+    },
     reason: TEXT
 });
 members.hasMany(vouches, {
@@ -41,6 +47,7 @@ members.hasMany(vouches, {
     onDelete: 'CASCADE',
     onUpdate: 'NO ACTION'
 });
+vouches.belongsTo(members);
 module.exports = {
     memberTable: members,
     vouchesTable: vouches
