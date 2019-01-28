@@ -23,6 +23,24 @@ const vouches = client.database.define('vouches', {
     voucheeId: STRING,
     reason: TEXT
 });
+members.hasMany(vouches, {
+    constraints: true,
+    foreignKey: {
+        field: 'voucheeId',
+        primaryKey: true
+    },
+    onDelete: 'CASCADE',
+    onUpdate: 'NO ACTION'
+});
+members.hasMany(vouches, {
+    constraints: true,
+    foreignKey: {
+        field: 'voucherId',
+        primaryKey: true
+    },
+    onDelete: 'CASCADE',
+    onUpdate: 'NO ACTION'
+});
 module.exports = {
     memberTable: members,
     vouchesTable: vouches
