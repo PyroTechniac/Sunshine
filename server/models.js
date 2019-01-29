@@ -49,7 +49,8 @@ members.hasMany(vouches, {
     onDelete: 'CASCADE',
     onUpdate: 'NO ACTION'
 });
-vouches.belongsTo(members);
+vouches.belongsTo(members, { targetKey: 'newbieUserId', foreignKey: 'voucherId', as:'vouchers' });
+vouches.belongsTo(members, { targetKey: 'newbieUserId', foreignKey: 'voucheeId', as:'vouchees' });
 module.exports = {
     memberTable: members,
     vouchesTable: vouches

@@ -30,7 +30,7 @@ class SQLite {
       await db.authenticate();
       await db.sync();
     }
- catch (error) {
+    catch (error) {
       console.error('[DATABASE] Unable to connect to database', error);
       setTimeout(() => {
         SQLite.start();
