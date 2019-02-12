@@ -3,6 +3,9 @@
     "version": "0.0.1",
     "description": "A bot for Pyro to learn Akairo",
     "license": "MIT",
+    "scripts": {
+        "start": "node ./Sunshine.js"
+    },
     "devDependencies": {
         "eslint": "^5.13.0"
     },
