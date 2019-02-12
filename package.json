@@ -1,7 +1,19 @@
 {
     "name": "sunshine",
     "version": "0.0.1",
+    "description": "A bot for Pyro to learn Akairo",
+    "license": "MIT",
     "devDependencies": {
         "eslint": "^5.13.0"
+    },
+    "dependencies": {
+        "discord-akairo": "1Computer1/discord-akairo",
+        "discord.js": "discordjs/discord.js"
+    },
+    "optionalDependencies": {
+        "@discordjs/uws": "^11.149.1",
+        "erlpack": "discordapp/erlpack",
+        "node-opus": "^0.3.1",
+        "zlib-sync": "^0.1.4"
     }
 }
