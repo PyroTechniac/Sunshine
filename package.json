@@ -1,24 +1,13 @@
 {
     "name": "sunshine",
     "version": "0.0.1",
-    "description": "A bot for Pyro to learn Akairo",
+    "description": "A bot for Pyro to learn the Klasa framework for Discord.js",
     "license": "MIT",
-    "main": "Sunshine.js",
-    "scripts": {
-        "start": "node Sunshine.js"
-    },
     "devDependencies": {
         "eslint": "^5.13.0"
     },
     "dependencies": {
-        "discord-akairo": "^7.5.5",
-        "discord.js": "^11.4.2",
-        "dotenv": "^6.2.0"
-    },
-    "optionalDependencies": {
-        "@discordjs/uws": "^11.149.1",
-        "erlpack": "discordapp/erlpack",
-        "node-opus": "^0.3.1",
-        "zlib-sync": "^0.1.4"
+        "discord.js": "discordjs/discord.js",
+        "klasa": "dirigeants/klasa"
     }
 }
