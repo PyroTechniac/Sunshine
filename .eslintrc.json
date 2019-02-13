@@ -10,7 +10,7 @@
     "rules": {
         "brace-style": [
             "error",
-            "stroustrup",
+            "1tbs",
             {
                 "allowSingleLine": true
             }
@@ -36,6 +36,13 @@
         "dot-location": [
             "error",
             "property"
+        ],
+        "func-style": [
+            "error",
+            "expression",
+            {
+                "allowArrowFunctions": true
+            }
         ],
         "handle-callback-err": "off",
         "indent": "error",
