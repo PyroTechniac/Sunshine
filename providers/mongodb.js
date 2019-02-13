@@ -82,7 +82,7 @@ module.exports = class extends Provider {
 };
 
 const resolveQuery = query => isObject(query) ? query : { id: query };
-
+/* eslint-disable */
 function flatten(obj, path = '') {
     let output = {};
     for (const [key, value] of Object.entries(obj)) {

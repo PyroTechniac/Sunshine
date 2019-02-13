@@ -15,7 +15,8 @@
     "dependencies": {
         "discord.js": "discordjs/discord.js",
         "dotenv": "^6.2.0",
-        "klasa": "dirigeants/klasa",
-        "mongodb": "^3.1.13"
+        "klasa": "dirigeants/klasa#preparation-partials",
+        "mongodb": "^3.1.13",
+        "node-fetch": "^2.3.0"
     }
 }
