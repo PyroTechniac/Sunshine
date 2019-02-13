@@ -3,12 +3,17 @@
     "version": "0.0.1",
     "description": "A bot for Pyro to learn Akairo",
     "license": "MIT",
+    "main": "Sunshine.js",
+    "scripts": {
+        "start": "node Sunshine.js"
+    },
     "devDependencies": {
         "eslint": "^5.13.0"
     },
     "dependencies": {
-        "discord-akairo": "1Computer1/discord-akairo",
-        "discord.js": "discordjs/discord.js"
+        "discord-akairo": "^7.5.5",
+        "discord.js": "^11.4.2",
+        "dotenv": "^6.2.0"
     },
     "optionalDependencies": {
         "@discordjs/uws": "^11.149.1",
