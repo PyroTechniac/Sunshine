@@ -3,11 +3,19 @@
     "version": "0.0.1",
     "description": "A bot for Pyro to learn the Klasa framework for Discord.js",
     "license": "MIT",
+    "scripts": {
+        "start": "node Sunshine.js",
+        "lint": "eslint . --ext .js",
+        "lint:fix": "eslint . --ext .js --fix",
+        "test": "yarn install --ignore-scripts && yarn lint && yarn start"
+    },
     "devDependencies": {
         "eslint": "^5.13.0"
     },
     "dependencies": {
         "discord.js": "discordjs/discord.js",
-        "klasa": "dirigeants/klasa"
+        "dotenv": "^6.2.0",
+        "klasa": "dirigeants/klasa",
+        "mongodb": "^3.1.13"
     }
 }
