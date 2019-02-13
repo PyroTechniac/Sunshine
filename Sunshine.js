@@ -4,6 +4,7 @@ const client = new Client({
     ownerID: config.owner,
     prefix: config.prefix,
     providers: {
+        default: 'mongodb',
         mongodb: config.database
     }
 });
