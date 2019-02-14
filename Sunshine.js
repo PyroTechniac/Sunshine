@@ -7,6 +7,13 @@ const client = new Client({
     providers: {
         default: 'mongodb',
         mongodb: config.database
+    },
+    consoleEvents: {
+        verbose: true,
+        log: true,
+        error: true,
+        warn: true,
+        wtf: true
     }
 });
 client.login(config.token);
