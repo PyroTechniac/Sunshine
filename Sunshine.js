@@ -14,6 +14,7 @@ const client = new Client({
         error: true,
         warn: true,
         wtf: true
-    }
+    },
+    language: 'en-US'
 });
 client.login(config.token);
