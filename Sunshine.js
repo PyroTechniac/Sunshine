@@ -1,10 +1,7 @@
 const config = require('./config');
 const { Client } = require('klasa');
 Client.defaultUserSchema.add('TODOs', 'any', { array: true });
-Client.defaultGuildSchema.add('levelMessage', 'boolean', {
-    default: false,
-    configurable: true
-});
+Client.defaultGuildSchema.add('antiinvite', 'boolean', { default: false });
 const client = new Client({
     ownerID: config.owner,
     prefix: config.prefix,
