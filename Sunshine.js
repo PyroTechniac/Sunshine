@@ -2,6 +2,8 @@ const config = require('./config');
 const { Client } = require('klasa');
 Client.defaultUserSchema.add('TODOs', 'any', { array: true });
 Client.defaultGuildSchema.add('antiinvite', 'boolean', { default: false });
+Client.defaultGuildSchema.add('channels', folder => folder
+    .add('announcements', 'TextChannel'));
 const client = new Client({
     ownerID: config.owner,
     prefix: config.prefix,
