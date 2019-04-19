@@ -11,7 +11,8 @@
             "node",
             "discord.js",
             "discord-akairo",
-            "dotenv"
+            "dotenv",
+            "common-tags"
         ],
         "noEmitOnError": true
     },

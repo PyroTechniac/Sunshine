@@ -11,14 +11,17 @@
         "lint:fix": "npm run lint -- --fix"
     },
     "dependencies": {
+        "@types/common-tags": "^1.8.0",
+        "common-tags": "^1.8.0",
         "discord-akairo": "discord-akairo/discord-akairo",
         "discord.js": "discordjs/discord.js",
         "dotenv": "^7.0.0",
+        "mongodb": "^3.2.3",
         "node-fetch": "^2.3.0",
-        "pg": "^7.10.0",
         "reflect-metadata": "^0.1.13",
         "ts-node": "^8.1.0",
-        "typeorm": "^0.2.16"
+        "typeorm": "^0.2.16",
+        "winston": "^3.2.1"
     },
     "devDependencies": {
         "@types/dotenv": "^6.1.1",
@@ -37,6 +40,10 @@
                 "error",
                 4,
                 "spaces"
+            ],
+            "quotes": [
+                "error",
+                "single"
             ]
         }
     },
