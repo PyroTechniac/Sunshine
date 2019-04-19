@@ -18,12 +18,21 @@ const RESPONSES = [
 class PingCommand extends Command {
     constructor() {
         super('ping', {
-            aliases: ['ping']
+            aliases: ['ping'],
+            description: 'Checks the bot\'s ping to the Discord servers.',
+            category: 'util',
+            ratelimit: 2
         });
     }
 
     async exec(message) {
-        return message.reply('Pong');
+        const msg = await message.util.send('Pinging...');
+
+        return message.util.send(
+            RESPONSES[Math.floor(Math.random() * RESPONSES.length)]
+                .replace('$(ping)', ((msg.editedTimestamp || msg.createdTimestamp) - (message.editedTimestamp || message.createdTimestamp)).toString())
+                .replace('$(heartbeat)', Math.round(this.client.ws.ping).toString())
+        );
     }
 }
 

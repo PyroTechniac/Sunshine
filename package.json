@@ -18,6 +18,9 @@
         "discord-akairo": "discord-akairo/discord-akairo",
         "discord.js": "discordjs/discord.js",
         "dotenv": "^7.0.0",
-        "ms": "^2.1.1"
+        "ms": "^2.1.1",
+        "pg": "^7.10.0",
+        "reflect-metadata": "^0.1.13",
+        "typeorm": "^0.2.16"
     }
 }
