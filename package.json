@@ -1,22 +1,15 @@
 {
     "name": "sunshine",
     "version": "0.0.1",
-    "description": "A bot for Pyro to learn the Klasa framework for Discord.js",
+    "description": "A bot for Pyro to learn the Akairo framework for Discord.js",
     "license": "MIT",
-    "scripts": {
-        "start": "node Sunshine.js",
-        "lint": "eslint . --ext .js",
-        "lint:fix": "eslint . --ext .js --fix",
-        "test": "yarn install --ignore-scripts && yarn lint && yarn start"
-    },
+    "scripts": {},
     "devDependencies": {
-        "eslint": "^5.13.0"
+        "eslint": "^5.13.0",
+        "eslint-config-pyro": "pyrotechniac/pyro-lint"
     },
     "dependencies": {
-        "discord.js": "discordjs/discord.js",
-        "dotenv": "^6.2.0",
-        "klasa": "dirigeants/klasa",
-        "mongodb": "^3.1.13",
-        "node-fetch": "^2.3.0"
+        "discord-akairo": "discord-akairo/discord-akairo",
+        "discord.js": "discordjs/discord.js"
     }
 }
