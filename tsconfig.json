@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "outDir": "./dist",
+        "target": "esnext",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "types": [
+            "node",
+            "discord.js",
+            "discord-akairo",
+            "dotenv"
+        ],
+        "noEmitOnError": true
+    },
+    "include": [
+        "src"
+    ]
+}
