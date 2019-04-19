@@ -8,7 +8,8 @@ connectionManager.create({
     name: 'sunshine',
     type: 'mongodb',
     url: process.env.DB,
-    entities: [Setting, Case]
+    entities: [Setting, Case],
+    useNewUrlParser: true
 });
 
 export default connectionManager;

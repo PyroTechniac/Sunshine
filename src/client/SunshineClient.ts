@@ -1,24 +1,44 @@
 import { AkairoClient, CommandHandler, InhibitorHandler, ListenerHandler } from 'discord-akairo';
 import { join } from 'path';
 import { Connection } from 'typeorm';
+import { createLogger, format, Logger, transports } from 'winston';
+import { Setting } from '../models/Settings';
 import database from '../structures/Database';
 import TypeORMProvider from '../structures/SettingsProvider';
-import { Setting } from '../models/Settings';
+import { ClientApplication } from 'discord.js';
 
 declare module 'discord-akairo' {
     interface AkairoClient {
         db: Connection;
         settings: TypeORMProvider;
         commandHandler: CommandHandler;
+        logger: Logger;
+        application: ClientApplication;
     }
 }
 
 export default class SunshineClient extends AkairoClient {
+    public logger = createLogger({
+        format: format.combine(
+            format.colorize({ level: true }),
+            format.timestamp({ format: 'YYYY/MM/DD HH:mm:ss' }),
+            format.printf((info: any): string => {
+                const { timestamp, level, message, ...rest } = info;
+                return `[${timestamp}] ${level}: ${message}${Object.keys(rest).length ? `\n${JSON.stringify(rest, null, 2)}` : ''}`;
+            })
+        ),
+        transports: [
+            new transports.Console({ level: process.env.NODE_ENV === 'production' ? 'info' : 'debug' })
+        ]
+    })
+
     public commandHandler: CommandHandler = new CommandHandler(this, {
         directory: join(__dirname, '..', 'commands'),
         commandUtil: true,
         handleEdits: true
     })
+
+    public application!: ClientApplication;
 
     public db!: Connection
 
@@ -61,5 +81,10 @@ export default class SunshineClient extends AkairoClient {
     public async start(): Promise<string> {
         await this._init();
         return this.login(process.env.TOKEN);
+    }
+
+    public async fetchApplication(): Promise<ClientApplication> {
+        this.application = await super.fetchApplication();
+        return this.application;
     }
 }
