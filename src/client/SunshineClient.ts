@@ -1,11 +1,11 @@
 import { AkairoClient, CommandHandler, InhibitorHandler, ListenerHandler } from 'discord-akairo';
+import { ClientApplication, Message } from 'discord.js';
 import { join } from 'path';
 import { Connection } from 'typeorm';
 import { createLogger, format, Logger, transports } from 'winston';
 import { Setting } from '../models/Settings';
 import database from '../structures/Database';
 import TypeORMProvider from '../structures/SettingsProvider';
-import { ClientApplication } from 'discord.js';
 
 declare module 'discord-akairo' {
     interface AkairoClient {
@@ -14,6 +14,7 @@ declare module 'discord-akairo' {
         commandHandler: CommandHandler;
         logger: Logger;
         application: ClientApplication;
+        cachedCases: Set<string>;
     }
 }
 
@@ -35,7 +36,23 @@ export default class SunshineClient extends AkairoClient {
     public commandHandler: CommandHandler = new CommandHandler(this, {
         directory: join(__dirname, '..', 'commands'),
         commandUtil: true,
-        handleEdits: true
+        handleEdits: true,
+        commandUtilLifetime: 3e5,
+        defaultCooldown: 3000,
+        argumentDefaults: {
+            prompt: {
+                modifyStart: (_, str): string => `${str}\n\nType \`cancel\` to cancel the command`,
+                modifyRetry: (_, str): string => `${str}\n\nType \`cancel\` to cancel the command`,
+                timeout: 'Command timed out, please try again',
+                ended: 'Command cancelled due to too many tries',
+                cancel: 'Command has been cancelled',
+                retries: 3,
+                time: 30000
+            },
+            otherwise: ''
+        },
+        aliasReplacement: /-/g,
+        prefix: async (message: Message): Promise<string> => this.settings.get(message.guild!, 'prefix', 's$')
     })
 
     public application!: ClientApplication;
@@ -43,6 +60,8 @@ export default class SunshineClient extends AkairoClient {
     public db!: Connection
 
     public settings!: TypeORMProvider
+
+    public cachedCases = new Set();
 
     public inhibitorHandler: InhibitorHandler = new InhibitorHandler(this, {
         directory: join(__dirname, '..', 'inhibitors')
@@ -72,7 +91,7 @@ export default class SunshineClient extends AkairoClient {
         this.inhibitorHandler.loadAll();
         this.listenerHandler.loadAll();
 
-        this.db = database.get('sunshine');
+        this.db = database.get('botpyro-sunshine-db');
         await this.db.connect();
         this.settings = new TypeORMProvider(this.db.getRepository(Setting));
         await this.settings.init();

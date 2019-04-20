@@ -3,9 +3,9 @@ import { Message } from 'discord.js';
 import { Command } from 'discord-akairo';
 
 const RESPONSES: string[] = [
-    'No.',
-    'Not happening.',
-    'Maybe later.',
+    'No',
+    'Not happening',
+    'Maybe later',
     stripIndents`:ping_pong: Pong! \`$(ping)ms\`
 		Heartbeat: \`$(heartbeat)ms\``
 ];
