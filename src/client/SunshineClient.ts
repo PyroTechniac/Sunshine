@@ -91,7 +91,7 @@ export default class SunshineClient extends AkairoClient {
         this.inhibitorHandler.loadAll();
         this.listenerHandler.loadAll();
 
-        this.db = database.get('botpyro-sunshine-db');
+        this.db = database.get('sunshine');
         await this.db.connect();
         this.settings = new TypeORMProvider(this.db.getRepository(Setting));
         await this.settings.init();
